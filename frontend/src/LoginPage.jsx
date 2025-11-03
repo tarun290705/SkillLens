@@ -16,12 +16,17 @@ const LoginPage = () => {
     try {
       const data = { username, password };
       const response = await loginUser(data);
-      alert(`Logged in successfully as ${response.role}: ${username}`);
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("role", response.role);
-      if (response.role === "student") {
+
+      const userRole = response.user?.role || "student";
+
+      alert(`Logged in successfully as ${userRole}: ${response.user.username}`);
+
+      localStorage.setItem("token", response.access);
+      localStorage.setItem("role", userRole);
+
+      if (userRole === "student") {
         navigate("/student-dashboard");
-      } else if (response.role === "officer") {
+      } else if (userRole === "officer") {
         navigate("/officer-dashboard");
       }
     } catch (error) {
@@ -29,7 +34,6 @@ const LoginPage = () => {
       alert("Invalid credentials or role. Please try again.");
     }
   };
-
 
   return (
     <div className="auth-container">

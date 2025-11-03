@@ -10,7 +10,7 @@ const SuccessPopup = ({ role }) => {
       className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-xl shadow-lg"
     >
       <p className="font-semibold">
-        Logged in successfully as{" "}
+        Logged in successfully as {role}
         {role === "student" ? "Student 🎓" : "Placement Officer 🧑‍💼"}
       </p>
     </motion.div>
