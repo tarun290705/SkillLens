@@ -1,0 +1,323 @@
+/* === Full Page Background === */
+.dashboard-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: -1;
+}
+
+/* === Toolbar === */
+.fixed-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #000000;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  animation: slideDown 0.7s ease-out;
+}
+
+.brand-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Department Dropdown in Toolbar */
+.toolbar-dropdown {
+  background: #222;
+  color: white;
+  border: 1px solid #555;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.toolbar-dropdown:hover {
+  background: #333;
+}
+
+/* Notification Icon */
+.notification-btn {
+  position: relative;
+  font-size: 1.4rem;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.notification-btn:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background: red;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+/* === Dashboard Body === */
+.dashboard-body {
+  margin-top: 100px; /* below toolbar */
+  padding: 40px;
+  color: #fff;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Slide Animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+/* === Full Page Background === */
+.dashboard-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: -1;
+}
+
+/* === Toolbar === */
+.fixed-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #000;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  animation: slideDown 0.7s ease-out;
+}
+
+.brand-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Dropdown inside toolbar */
+.toolbar-dropdown {
+  background: #222;
+  color: white;
+  border: 1px solid #555;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.toolbar-dropdown:hover {
+  background: #333;
+}
+
+/* Notification Icon */
+.notification-btn {
+  position: relative;
+  font-size: 1.4rem;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.notification-btn:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background: red;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+/* === Centered Welcome Section === */
+.dashboard-center {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.welcome-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px 50px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  max-width: 600px;
+}
+
+.welcome-box h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.welcome-box p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Slide Animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+/* Center Section Style (like Student Dashboard) */
+.dashboard-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+
+.dashboard-section {
+  background: rgba(0, 0, 0, 0.65);
+  padding: 40px 60px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  backdrop-filter: blur(12px);
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.dashboard-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #00b3ff;
+  text-shadow: 0 0 10px rgba(0, 179, 255, 0.7);
+}
+
+.dashboard-section p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

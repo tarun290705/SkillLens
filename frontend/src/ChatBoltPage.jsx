@@ -32,7 +32,7 @@ const ChatBoltPage = () => {
           <FaArrowLeft />
         </button>
         <h1>
-          SkillLens ChatBolt <span className="emoji">💬🤖</span>
+          Skill Lens ChatBolt <span className="emoji">💬🤖</span>
         </h1>
       </header>
 
