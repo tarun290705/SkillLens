@@ -10,6 +10,7 @@ const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
+    role: selectedRole,
   });
 
   const [loading, setLoading] = useState(false);

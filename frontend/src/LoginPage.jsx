@@ -1,18 +1,35 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { loginUser } from "./api/auth";
 import "./Auth.css";
 
 const LoginPage = () => {
   const location = useLocation();
-  const role = location.state?.role || "User";
+  const navigate = useNavigate();
+  const role = location.state?.role || "student";
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    alert(`Logged in successfully as ${role}: ${username}`);
+    try {
+      const data = { username, password };
+      const response = await loginUser(data);
+      alert(`Logged in successfully as ${response.role}: ${username}`);
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("role", response.role);
+      if (response.role === "student") {
+        navigate("/student-dashboard");
+      } else if (response.role === "officer") {
+        navigate("/officer-dashboard");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Invalid credentials or role. Please try again.");
+    }
   };
+
 
   return (
     <div className="auth-container">
