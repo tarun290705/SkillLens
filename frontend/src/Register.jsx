@@ -25,7 +25,7 @@ const Register = () => {
     try {
       const payload = { ...formData, role: selectedRole };
       const res = await registerUser(payload);
-      alert(`Registered successfully as ${res.user?.role || selectedRole}!`);
+      alert(`Registered successfully as ${selectedRole}!`);
     } catch(error) {
        console.error(error);
       alert(error.error || "Registration failed!");

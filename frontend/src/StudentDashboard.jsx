@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
+import backgroundImage from "./assets/dashboard-bg.png"; // ✅ Ensure this path is correct
 
 const StudentDashboard = () => {
+<<<<<<< HEAD
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -38,110 +40,63 @@ const StudentDashboard = () => {
       setLoading(false);
     }
   };
+=======
+  const [selectedSection, setSelectedSection] = useState("Profile");
+>>>>>>> 8af09b084a0131f64879b25a7f54792d455e55c1
 
   return (
-    <div className="dashboard-container dark-mode full-page">
-      {/* Toolbar */}
-      <header className="toolbar">
-        <h1 className="brand-name">SkillLens</h1>
+    <div className="dashboard-wrapper">
+      {/* Background Image */}
+      <div
+        className="background-image"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+        }}
+      ></div>
 
-        <div className="toolbar-right">
-          {/* Dropdown for sections */}
-          <div className="dropdown">
-            <label htmlFor="section" className="dropdown-label">
-              Section:
-            </label>
-            <select
-              id="section"
-              value={selectedSection}
-              onChange={(e) => setSelectedSection(e.target.value)}
-              className="dropdown-select"
-            >
-              <option>Profile</option>
-              <option>Placement Predictions</option>
-              <option>Upskilling</option>
-              <option>Skill Extractor</option>
-            </select>
+      {/* Overlay */}
+      <div className="overlay"></div>
+
+      {/* Main Content */}
+      <div className="dashboard-container">
+        {/* Toolbar */}
+        <header className="toolbar fixed-toolbar">
+          {/* Left - Brand */}
+          <h1 className="brand-name">SkillLens</h1>
+
+          {/* Right - Buttons + Notifications */}
+          <div className="toolbar-right">
+            <button className="toolbar-btn" onClick={() => setSelectedSection("Profile")}>
+              Profile
+            </button>
+            <button className="toolbar-btn" onClick={() => setSelectedSection("Placement Predictions")}>
+              Placement Predictions
+            </button>
+            <button className="toolbar-btn" onClick={() => setSelectedSection("Upskilling")}>
+              Upskilling
+            </button>
+            <button className="toolbar-btn" onClick={() => setSelectedSection("Skill Extractor")}>
+              Skill Extractor
+            </button>
+
+            <button className="notification-btn" title="Notifications">
+              🔔
+              <span className="notification-badge">2</span>
+            </button>
           </div>
+        </header>
 
-          {/* Notification button */}
-          <button className="notification-btn" title="Notifications">
-            🔔
-            <span className="notification-badge">2</span>
-          </button>
-        </div>
-      </header>
-
-      <main className="dashboard-body">
-        {/* Dynamic content based on section */}
-        {selectedSection === "Profile" && (
+        {/* Content */}
+        <main className="dashboard-body">
           <section className="dashboard-section">
-            <h2>👤 Your Profile</h2>
-            <p>View and update your personal and academic details.</p>
-            <button>View Profile</button>
+            <h2>🎓 {selectedSection}</h2>
+            <p>
+              Welcome to the {selectedSection} section! Manage your placement activities,
+              check insights, and improve your readiness.
+            </p>
           </section>
-        )}
-
-        {selectedSection === "Placement Predictions" && (
-          <section className="dashboard-section">
-            <h2>📊 Placement Predictions</h2>
-            <p>Check your employability score and AI-based insights.</p>
-            <button>View Prediction</button>
-          </section>
-        )}
-
-        {selectedSection === "Upskilling" && (
-          <section className="dashboard-section">
-            <h2>📚 Upskilling</h2>
-            <p>Find courses and certifications to boost your skills.</p>
-            <button>Explore Courses</button>
-          </section>
-        )}
-
-        {selectedSection === "Skill Extractor" && (
-          <section className="dashboard-section">
-            <h2>💡 Skill Extractor</h2>
-            <p>Upload your resumes or project files to detect skills using AI.</p>
-
-            <div className="upload-section">
-              <div className="upload-box">
-                <label htmlFor="file-upload" className="custom-file-upload">
-                  📂 Choose Files
-                </label>
-                <input
-                  id="file-upload"
-                  type="file"
-                  multiple
-                  onChange={handleFileChange}
-                  style={{ display: "none" }}
-                />
-                <button onClick={handleUpload} disabled={loading}>
-                  {loading ? "Extracting..." : "Extract Skills"}
-                </button>
-              </div>
-
-              {selectedFiles.length > 0 && (
-                <p className="file-list">
-                  Selected: {selectedFiles.map((f) => f.name).join(", ")}
-                </p>
-              )}
-            </div>
-
-            {skills.length > 0 && (
-              <section className="skills-display">
-                <h3>✨ Extracted Skills</h3>
-                <div className="skills-grid">
-                  {skills.map((skill, index) => (
-                    <div key={index} className="skill-chip">
-                      💡 {skill}
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-          </section>
-        )}
-      </main>
+        </main>
+      </div>
     </div>
   );
 };

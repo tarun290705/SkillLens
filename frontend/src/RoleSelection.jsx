@@ -6,7 +6,7 @@ const RoleSelection = () => {
   const navigate = useNavigate();
 
   const handleSelect = (role) => {
-    navigate("/login", { state: { role } });
+    navigate("/register", { state: { role } });
   };
 
   return (
