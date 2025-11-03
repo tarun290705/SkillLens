@@ -42,5 +42,5 @@ shap.summary_plot(shap_values_to_use, X_test, plot_type="bar", show=False)
 plt.savefig("feature_importance.png", bbox_inches="tight")
 plt.close()
 
-print("📊 SHAP summary plot saved as feature_importance.png")
+print("SHAP summary plot saved as feature_importance.png")
 
