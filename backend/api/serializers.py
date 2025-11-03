@@ -25,5 +25,5 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         user = authenticate(**data)
         if not user:
-            raise serializers.validationError("Invalid username or password")
+            raise serializers.ValidationError("Invalid username or password")
         return user
