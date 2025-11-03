@@ -1,0 +1,401 @@
+/* General full-page layout */
+.full-page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Dark Mode Background */
+.dashboard-container.dark-mode {
+  background: linear-gradient(135deg, #071221, #0b2748);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toolbar (Top Bar) */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d1117;
+  padding: 15px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.brand-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00c6ff;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Notification Button */
+.notification-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.notification-btn:hover {
+  color: #00c6ff;
+  transform: scale(1.1);
+}
+
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ff3b3b;
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-weight: bold;
+}
+
+/* Body Section */
+.full-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  font-size: 2rem;
+  color: #00c6ff;
+}
+
+/* Card Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* Cards */
+.dashboard-card {
+  background: #1c1f26;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-card h3 {
+  color: #00c6ff;
+}
+
+.dashboard-card button {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: #00c6ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: black;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.dashboard-card button:hover {
+  background: #0091ff;
+}
+/* Upload Section */
+.upload-section {
+  margin: 40px auto;
+  text-align: center;
+}
+
+.upload-box {
+  background: #1c1f26;
+  border-radius: 12px;
+  padding: 25px 35px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.custom-file-upload {
+  background: #00c6ff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: black;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: background 0.3s ease;
+}
+
+.custom-file-upload:hover {
+  background: #0091ff;
+  color: white;
+}
+
+.upload-box button {
+  background: #00c6ff;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-box button:hover {
+  background: #0091ff;
+  color: white;
+}
+
+/* File List */
+.file-list {
+  margin-top: 12px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Skills Display */
+.skills-display {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.skills-display h3 {
+  color: #00c6ff;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.skill-chip {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* Dark theme container */
+.full-page {
+  height: 100vh;
+  background: #0b0c10;
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1c1f26;
+  padding: 15px 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.brand-name {
+  font-size: 1.8rem;
+  color: #00c6ff;
+  font-weight: bold;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Dropdown */
+.dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-label {
+  font-weight: 600;
+}
+
+.dropdown-select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #00c6ff;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Notification Button */
+.notification-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: red;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Body */
+.dashboard-body {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* Section */
+.dashboard-section {
+  text-align: center;
+  background: #1c1f26;
+  border-radius: 12px;
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-section h2 {
+  color: #00c6ff;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-section p {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.dashboard-section button {
+  background: #00c6ff;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dashboard-section button:hover {
+  background: #0091ff;
+  color: white;
+}
+
+/* Upload + Skills Styles (from earlier) */
+.upload-section {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.upload-box {
+  background: #0e1116;
+  border-radius: 12px;
+  padding: 25px 35px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.custom-file-upload {
+  background: #00c6ff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: black;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.custom-file-upload:hover {
+  background: #0091ff;
+  color: white;
+}
+
+.file-list {
+  margin-top: 12px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Skills Display */
+.skills-display {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.skill-chip {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+

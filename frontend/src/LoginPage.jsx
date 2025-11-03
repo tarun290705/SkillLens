@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Auth.css";
 
 const LoginPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const role = location.state?.role || "User";
 
   const [username, setUsername] = useState("");
@@ -11,12 +12,25 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    alert(`Logged in successfully as ${role}: ${username}`);
+
+    // Mock login validation
+    if (username && password) {
+      // Redirect based on role
+      if (role === "student") {
+        navigate("/student-dashboard", { state: { username, role } });
+      } else if (role === "placement") {
+        navigate("/placement-dashboard", { state: { username, role } });
+      } else {
+        alert("Invalid role selected!");
+      }
+    } else {
+      alert("Please enter valid credentials.");
+    }
   };
 
   return (
     <div className="auth-container">
-      {/* Main Heading */}
+      {/* Heading */}
       <h1 className="main-heading">SkillLens</h1>
 
       <div className="auth-box">
@@ -30,6 +44,7 @@ const LoginPage = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
+
             <label>Password</label>
             <input
               type="password"
@@ -37,7 +52,9 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+
             <button type="submit">Login</button>
+
             <p>
               Don’t have an account?{" "}
               <Link to="/register" className="link">
