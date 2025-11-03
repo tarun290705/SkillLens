@@ -39,7 +39,7 @@ const LoginPage = () => {
     <div className="auth-container">
       {/* Main Heading with Emojis */}
       <h1 className="main-heading">
-        <span className="emoji-left">🎓</span> SkillLens <span className="emoji-right">💼</span>
+        <span className="emoji-left">🎓</span> Skill Lens <span className="emoji-right">💼</span>
       </h1>
 
       <div className="auth-box">
@@ -78,7 +78,7 @@ const LoginPage = () => {
         <div className="auth-right">
           <h2>🎯 Welcome Back!</h2>
           <p>
-            Login to continue your <b>SkillLens</b> placement journey as a{" "}
+            Login to continue your <b>Skill Lens</b> placement journey as a{" "}
             <b>{role}</b>. <br />
             🌟 Stay motivated and keep pushing towards success!
           </p>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./Dashboard.css";
+import "./PlacementDashboard.css";
+import backgroundImage from "./assets/dashboard-bg.png"; // background image path
 
 const PlacementOfficerDashboard = () => {
   const [department, setDepartment] = useState("All Departments");
@@ -9,33 +10,36 @@ const PlacementOfficerDashboard = () => {
   };
 
   return (
-    <div className="dashboard-container dark-mode">
-      {/* Toolbar */}
-      <header className="toolbar">
-        <h1 className="brand-name">SkillLens</h1>
+    <div className="dashboard-wrapper">
+      {/* Full Background Image */}
+      <div
+        className="background-image"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
 
+      {/* Overlay */}
+      <div className="overlay"></div>
+
+      {/* Toolbar */}
+      <header className="toolbar fixed-toolbar slide-up">
+        <h1 className="brand-name">SkillLens</h1>
         <div className="toolbar-right">
           {/* Department Dropdown */}
-          <div className="dropdown">
-            <label htmlFor="department" className="dropdown-label">
-              Department:
-            </label>
-            <select
-              id="department"
-              value={department}
-              onChange={handleDepartmentChange}
-              className="dropdown-select"
-            >
-              <option>All Departments</option>
-              <option>Computer Science</option>
-              <option>Electronics</option>
-              <option>Mechanical</option>
-              <option>Civil</option>
-              <option>Information Science</option>
-            </select>
-          </div>
+          <select
+            id="department"
+            value={department}
+            onChange={handleDepartmentChange}
+            className="toolbar-dropdown"
+          >
+            <option>All Departments</option>
+            <option>Computer Science</option>
+            <option>Electronics</option>
+            <option>Mechanical</option>
+            <option>Civil</option>
+            <option>Information Science</option>
+          </select>
 
-          {/* Notification Button */}
+          {/* Notification Bell */}
           <button className="notification-btn" title="Notifications">
             🔔
             <span className="notification-badge">3</span>
@@ -43,51 +47,15 @@ const PlacementOfficerDashboard = () => {
         </div>
       </header>
 
-      {/* Dashboard Body */}
+      {/* Middle Glass Box */}
       <main className="dashboard-body">
-        <section className="dashboard-header">
-          <h2>Placement Officer Dashboard</h2>
+        <section className="dashboard-section">
+          <h2>👨‍💼 Placement Officer Dashboard</h2>
           <p>
-            Track placement updates, manage student data, and oversee department progress.
+            Welcome to the Placement Officer Dashboard!  
+            Manage department-wise placement data, analyze student performance,  
+            and stay updated with the latest company drives.
           </p>
-        </section>
-
-        <section className="dashboard-grid">
-          <div className="dashboard-card">
-            <h3>Student Analytics</h3>
-            <p>Get insights on placement readiness and training progress.</p>
-            <button>View Analytics</button>
-          </div>
-
-          <div className="dashboard-card">
-            <h3>Company Insights</h3>
-            <p>Check upcoming drives and detailed company requirements.</p>
-            <button>View Companies</button>
-          </div>
-
-          <div className="dashboard-card">
-            <h3>Placement Reports</h3>
-            <p>Generate and export reports for each department.</p>
-            <button>Generate Report</button>
-          </div>
-
-          <div className="dashboard-card">
-            <h3>Student Records</h3>
-            <p>Access and update student placement data.</p>
-            <button>Manage Records</button>
-          </div>
-
-          <div className="dashboard-card">
-            <h3>Notifications</h3>
-            <p>View and send important updates to students.</p>
-            <button>View Notifications</button>
-          </div>
-
-          <div className="dashboard-card">
-            <h3>Drive Calendar</h3>
-            <p>Track and schedule company visits and interviews.</p>
-            <button>Open Calendar</button>
-          </div>
         </section>
       </main>
     </div>

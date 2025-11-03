@@ -19,7 +19,7 @@ const RoleSelection = () => {
 
       {/* SkillLens Heading */}
       <h1 className="main-heading">
-        SkillLens <span className="spark">✨</span>
+        Skill Lens <span className="spark">✨</span>
       </h1>
 
       <div className="role-card">
