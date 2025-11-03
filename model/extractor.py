@@ -38,8 +38,8 @@ def extract_tech_skills_with_gemini(text):
     - Tools, platforms, and cloud technologies
     - ML/Data Science tools
 
-    ❌ Exclude soft skills.
-    ✅ Return only a JSON array of skills.
+    Exclude soft skills.
+    Return only a JSON array of skills.
 
     Text:
     {text}

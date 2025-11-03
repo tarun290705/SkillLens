@@ -28,3 +28,15 @@ async def extract_skills(file: UploadFile = File(...)):
 
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
+@app.post("/extract-multi/")
+async def extract_multi(files: list[UploadFile] = File(...)):
+    combined_text = ""
+    for file in files:
+        file_path = os.path.join(UPLOAD_DIR, file.filename)
+        with open(file_path, "wb") as f:
+            f.write(await file.read())
+        combined_text += extract_text(file_path) + "\n\n"
+
+    skills = extract_tech_skills_with_gemini(combined_text)
+    return {"skills": skills}
+
