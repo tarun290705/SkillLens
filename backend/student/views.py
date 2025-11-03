@@ -37,3 +37,16 @@ class UploadResumeView(APIView):
 
         serializer = StudentProfileSerializer(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class GetStudentProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        try:
+            profile = StudentProfile.objects.get(user=user)
+        except StudentProfile.DoesNotExist:
+            return Response({'error': 'Profile not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = StudentProfileSerializer(profile)
+        return Response(serializer.data, status=status.HTTP_200_OK)

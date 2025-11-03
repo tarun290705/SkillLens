@@ -388,7 +388,7 @@ body {
 .auth-box {
   display: flex;
   background-color: #ffffff;
-  color: white;
+  color: black;
   width: 850px;
   border-radius: 20px;
   overflow: hidden;

@@ -39,7 +39,7 @@ const Register = () => {
       {/* Main Heading */}
       <h1 className="main-heading">
         <span className="emoji-left">🎓</span>
-        SkillLens
+        Skill Lens
         <span className="emoji-right">💼</span>
       </h1>
 
@@ -83,7 +83,7 @@ const Register = () => {
         <div className="auth-right">
           <h2>🎯 Welcome!</h2>
           <p>
-            Join <b>SkillLens</b> and start your placement journey today. <br />
+            Join <b>Skill Lens</b> and start your placement journey today. <br />
             💡 Build skills, 📊 track progress, and 💪 boost your employability!
           </p>
         </div>
