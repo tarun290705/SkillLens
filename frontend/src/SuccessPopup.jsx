@@ -1,9 +1,9 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 const SuccessPopup = ({ role }) => {
   return (
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
@@ -13,7 +13,7 @@ const SuccessPopup = ({ role }) => {
         Logged in successfully as {role}
         {role === "student" ? "Student 🎓" : "Placement Officer 🧑‍💼"}
       </p>
-    </motion.div>
+    </Motion.div>
   );
 };
 
