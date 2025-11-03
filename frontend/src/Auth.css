@@ -1,109 +1,162 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
-
+/* General body styling */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(to right, #002b36, #001f2d);
+  background: linear-gradient(135deg, #081a24, #0077b6, #00b4d8);
+  background-size: cover;
+  height: 100vh;
+}
+
+/* Role Selection */
+.role-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   color: white;
 }
 
+.role-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 40px;
+}
+
+.role-buttons button {
+  background-color: white;
+  color: #0077b6;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.role-buttons button:hover {
+  background-color: #caf0f8;
+}
+
+/* Auth Page Container */
 .auth-container {
   display: flex;
-  height: 100vh;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .auth-box {
   display: flex;
-  width: 800px;
-  height: 500px;
-  background-color: #0c1a25;
+  background-color: #081a24;
+  color: white;
+  width: 850px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-.auth-left,
-.auth-right {
+/* Left section (form) */
+.auth-left {
   flex: 1;
   padding: 40px;
+}
+
+.auth-left h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.auth-left form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
-.auth-right {
-  background: linear-gradient(135deg, #00bcd4, #007b83);
-  text-align: center;
-  color: #fff;
+.auth-left label {
+  font-size: 0.9rem;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
-.auth-title {
-  font-size: 32px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-label {
-  font-size: 14px;
-  color: #ccc;
-}
-
-.input-wrapper {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #555;
-  padding: 5px 0;
-}
-
-.input-wrapper input {
-  flex: 1;
+.auth-left input {
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #00b4d8;
   background: transparent;
-  border: none;
   color: white;
-  padding: 8px;
   outline: none;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
-.icon {
-  margin-right: 10px;
-  color: #00bcd4;
+.auth-left input:focus {
+  border-bottom-color: #48cae4;
 }
 
-.btn {
-  width: 100%;
-  background: linear-gradient(to right, #00bcd4, #009688);
+.auth-left button {
+  margin-top: 25px;
+  background: linear-gradient(90deg, #00b4d8, #0077b6);
   border: none;
-  padding: 12px;
   color: white;
-  font-weight: bold;
+  padding: 12px;
   border-radius: 25px;
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 1rem;
+  transition: 0.3s ease;
 }
 
-.btn:hover {
+.auth-left button:hover {
   opacity: 0.9;
 }
 
-.switch-text {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #aaa;
+/* Right section (info) */
+.auth-right {
+  flex: 1;
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
   text-align: center;
 }
 
-.switch-text a {
-  color: #00bcd4;
-  text-decoration: none;
+.auth-right h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
-.switch-text a:hover {
+.auth-right p {
+  font-size: 1rem;
+  line-height: 1.4;
+  max-width: 250px;
+}
+
+/* Links */
+.link {
+  color: #00b4d8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
   text-decoration: underline;
 }
+.main-heading {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000000; /* Black color */
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}
+

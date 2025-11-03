@@ -1,64 +1,55 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";  // ← Add this
+import { Link, useLocation } from "react-router-dom";
 import "./Auth.css";
 
 const LoginPage = () => {
+  const location = useLocation();
+  const role = location.state?.role || "User";
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    alert(`Logged in successfully as ${username}`);
+    alert(`Logged in successfully as ${role}: ${username}`);
   };
 
   return (
     <div className="auth-container">
+      {/* Main Heading */}
+      <h1 className="main-heading">SkillLens</h1>
+
       <div className="auth-box">
-        {/* Left Side */}
         <div className="auth-left">
-          <h2 className="auth-title">Login</h2>
+          <h2>Login</h2>
           <form onSubmit={handleLogin}>
-            <div className="input-group">
-              <label>Username</label>
-              <div className="input-wrapper">
-                <i className="fa fa-user icon"></i>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <label>Password</label>
-              <div className="input-wrapper">
-                <i className="fa fa-lock icon"></i>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
-            <button type="submit" className="btn">
-              Login
-            </button>
-
-            <p className="switch-text">
+            <label>Username</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button type="submit">Login</button>
+            <p>
               Don’t have an account?{" "}
-              <Link to="/register">Sign Up</Link> {/* ← directs to RegisterPage */}
+              <Link to="/register" className="link">
+                Sign Up
+              </Link>
             </p>
           </form>
         </div>
 
-        {/* Right Side */}
         <div className="auth-right">
-          <h2>Hello, Friend!</h2>
-          <p>Enter your personal details and start your journey with us.</p>
+          <h2>Welcome Back!</h2>
+          <p>Login to continue your journey as a {role}.</p>
         </div>
       </div>
     </div>

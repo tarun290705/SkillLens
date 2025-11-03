@@ -1,23 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./RoleSelection.css";
 
-const RoleSelection = ({ onSelectRole }) => {
+const RoleSelection = () => {
+  const navigate = useNavigate();
+
+  const handleSelect = (role) => {
+    navigate("/login", { state: { role } });
+  };
+
   return (
-    <div className="text-center bg-white shadow-2xl rounded-2xl p-10 max-w-md">
-      <h1 className="text-3xl font-bold mb-6 text-blue-700">Welcome to Placement Portal</h1>
-      <p className="text-gray-600 mb-8">Choose your role to continue:</p>
-      <div className="flex flex-col gap-4">
-        <button
-          onClick={() => onSelectRole("student")}
-          className="bg-blue-500 text-white py-2 px-4 rounded-xl hover:bg-blue-600 transition-all"
-        >
-          Student Login
-        </button>
-        <button
-          onClick={() => onSelectRole("officer")}
-          className="bg-green-500 text-white py-2 px-4 rounded-xl hover:bg-green-600 transition-all"
-        >
-          Placement Officer Login
-        </button>
+    <div className="role-container">
+      <div className="role-card">
+        <h1 className="role-heading">🎯 Select Your Role</h1>
+        <p className="role-subtext">Choose how you want to continue your journey 🚀</p>
+
+        <div className="role-buttons">
+          <button className="role-btn student" onClick={() => handleSelect("student")}>
+            🎓 Student
+          </button>
+          <button className="role-btn officer" onClick={() => handleSelect("placement")}>
+            🧑‍💼 Placement Officer
+          </button>
+        </div>
       </div>
     </div>
   );
