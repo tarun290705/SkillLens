@@ -6,22 +6,23 @@ import pandas as pd
 import joblib
 import os
 import json
-import random
+import re
+import pdfplumber
+from docx import Document
 from dotenv import load_dotenv
 import google.generativeai as genai
 
-# ─────────────────────────────────────────────
-# 🔧 Configuration
-# ─────────────────────────────────────────────
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-app = FastAPI(title="SkillLens Employability & Quiz API", version="1.0")
+MODEL_NAME = "models/gemini-2.5-pro"
+gemini_model = genai.GenerativeModel(MODEL_NAME)
 
-# Enable CORS
+app = FastAPI(title="SkillLens Employability & Quiz API", version="3.0")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Use frontend domain in production
+    allow_origins=["*"],  # replace with frontend domain in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,47 +34,177 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 # Load ML model
 try:
     model = joblib.load("employability_model.pkl")
+    print("Employability model loaded successfully.")
 except Exception:
     model = None
-    print("⚠️ Model not found — ensure employability_model.pkl exists")
+    print("employability_model.pkl not found.")
+
 
 # ─────────────────────────────────────────────
-# 📄 Dummy text extractor placeholder
-# (Replace with your actual implementation)
+# File Text Extraction Utilities
 # ─────────────────────────────────────────────
-def extract_text(file_path: str) -> str:
-    """Mock PDF/Docx text extractor."""
-    with open(file_path, "r", errors="ignore") as f:
-        return f.read()
+def extract_text_from_pdf(filepath: str):
+    with pdfplumber.open(filepath) as pdf:
+        return "\n".join([p.extract_text() or "" for p in pdf.pages])
+
+
+def extract_text_from_docx(filepath: str):
+    doc = Document(filepath)
+    return "\n".join([p.text for p in doc.paragraphs])
+
+
+def extract_text(filepath: str):
+    """Auto-detect and extract text from PDF or DOCX"""
+    if filepath.lower().endswith(".pdf"):
+        return extract_text_from_pdf(filepath)
+    elif filepath.lower().endswith((".docx", ".doc")):
+        return extract_text_from_docx(filepath)
+    else:
+        raise ValueError("Unsupported file format")
+
 
 # ─────────────────────────────────────────────
-# 🧠 Gemini Skill Validator
+#  Skill Extraction and Classification
 # ─────────────────────────────────────────────
-def classify_skills(skills):
+def extract_tech_skills_with_gemini(text: str):
     prompt = f"""
-    You are an AI skill validator. For each skill in the following list, classify it as:
-    - TECH if it is a technical or programming-related skill
-    - SOFT if it is a soft skill (communication, teamwork, etc.)
-    - INVALID if it is not a valid or professional skill.
-    Input Skills: {skills}
-    Return JSON like:
-    {{
-        "valid_skills": ["Python", "SQL", "Teamwork"],
-        "tech_skills": ["Python", "SQL"],
-        "soft_skills": ["Teamwork"]
-    }}
+    You are an expert technical skill extractor.
+    Extract only *technical skills* such as:
+    - Programming languages
+    - Frameworks and libraries
+    - Databases
+    - Tools, platforms, and cloud technologies
+    - ML/Data Science tools
+
+    Exclude soft skills.
+    Return only a JSON array of strings.
+    Text:
+    {text}
     """
+    response = gemini_model.generate_content(prompt)
+    output = response.text.strip()
 
-    response = genai.GenerativeModel("gemini-1.5-flash").generate_content(prompt)
     try:
-        result = json.loads(response.text)
-        return result
+        output = output.replace("```json", "").replace("```", "")
+        skills = json.loads(output)
+        if isinstance(skills, list):
+            return [s.strip() for s in skills]
     except Exception:
-        return {"valid_skills": [], "tech_skills": [], "soft_skills": []}
+        return []
+    return []
+
+
+def extract_soft_skills_with_gemini(text: str):
+    prompt = f"""
+    Extract only *soft skills* such as communication, teamwork, leadership,
+    adaptability, creativity, etc. Return a JSON array of soft skills.
+    Text:
+    {text}
+    """
+    response = gemini_model.generate_content(prompt)
+    output = response.text.strip()
+    try:
+        output = output.replace("```json", "").replace("```", "")
+        skills = json.loads(output)
+        if isinstance(skills, list):
+            return [s.strip() for s in skills]
+    except Exception:
+        return []
+    return []
+
 
 # ─────────────────────────────────────────────
-# 📤 Resume Upload & Skill Extraction
+#  CGPA Extraction
 # ─────────────────────────────────────────────
+def extract_cgpa_from_marks(text: str) -> float:
+    # Try regex first
+    matches = re.findall(r"(\d\.\d{1,2})", text)
+    possible = [float(m) for m in matches if 0 < float(m) <= 10]
+    if possible:
+        return round(sum(possible) / len(possible), 2)
+
+    # fallback: use Gemini to interpret marks
+    prompt = f"Extract only the CGPA (out of 10) from this marks card text:\n{text}\nReturn only a number."
+    response = gemini_model.generate_content(prompt)
+    try:
+        return float(response.text.strip())
+    except:
+        return 0.0
+
+
+# ─────────────────────────────────────────────
+# Employability Prediction Endpoint
+# ─────────────────────────────────────────────
+@app.post("/analyze-employability/")
+async def analyze_employability(
+    resume: UploadFile = File(...),
+    marks_card: UploadFile = File(...)
+):
+    """Upload resume + marks card → Get employability score, reasoning, and skills."""
+    try:
+        # Save uploaded files
+        resume_path = os.path.join(UPLOAD_DIR, resume.filename)
+        marks_path = os.path.join(UPLOAD_DIR, marks_card.filename)
+
+        with open(resume_path, "wb") as f:
+            f.write(await resume.read())
+        with open(marks_path, "wb") as f:
+            f.write(await marks_card.read())
+
+        # Extract text
+        resume_text = extract_text(resume_path)
+        marks_text = extract_text(marks_path)
+
+        # Extract skills
+        tech_skills = extract_tech_skills_with_gemini(resume_text)
+        soft_skills = extract_soft_skills_with_gemini(resume_text)
+        all_skills = list(set(tech_skills + soft_skills))
+
+        # Extract CGPA
+        cgpa = extract_cgpa_from_marks(marks_text)
+
+        # Predict using model
+        if not model:
+            raise HTTPException(status_code=500, detail="Model not loaded")
+
+        X = pd.DataFrame([{
+            "cgpa": cgpa,
+            "num_skills": len(all_skills),
+            "tech_skill_score": len(tech_skills),
+            "soft_skill_score": len(soft_skills)
+        }])
+
+        pred = model.predict(X)[0]
+        confidence = float(model.predict_proba(X)[0][1])
+        placement_percent = round(confidence * 100, 2)
+
+        # Generate reason with Gemini
+        reason_prompt = f"""
+        A student has:
+        - CGPA: {cgpa}
+        - Technical skills: {tech_skills}
+        - Soft skills: {soft_skills}
+        - Predicted placement chance: {placement_percent}%
+
+        In 2-3 lines, explain the reason behind this probability.
+        """
+        reason_response = gemini_model.generate_content(reason_prompt)
+        reason = reason_response.text.strip()
+
+        return JSONResponse(content={
+            "cgpa": cgpa,
+            "placement_chance": f"{placement_percent}%",
+            "reason": reason,
+            "skills": {
+                "tech_skills": tech_skills,
+                "soft_skills": soft_skills,
+                "total_skills": all_skills
+            }
+        }, status_code=200)
+
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+
 @app.post("/extract-skills/")
 async def extract_skills(file: UploadFile = File(...)):
     """Extract skills from uploaded resume and classify with Gemini."""
@@ -96,40 +227,3 @@ async def extract_skills(file: UploadFile = File(...)):
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
-# ─────────────────────────────────────────────
-# 📊 Employability Prediction
-# ─────────────────────────────────────────────
-class EmployabilityInput(BaseModel):
-    cgpa: float
-    skills: list[str]
-
-@app.post("/predict")
-def predict_employability(data: EmployabilityInput):
-    if not model:
-        raise HTTPException(status_code=500, detail="Model not loaded")
-
-    classified = classify_skills(data.skills)
-
-    num_skills = len(classified["valid_skills"])
-    tech_skill_score = len(classified["tech_skills"])
-    soft_skill_score = len(classified["soft_skills"])
-
-    X = pd.DataFrame([{
-        "cgpa": data.cgpa,
-        "num_skills": num_skills,
-        "tech_skill_score": tech_skill_score,
-        "soft_skill_score": soft_skill_score
-    }])
-
-    pred = model.predict(X)[0]
-    confidence = float(model.predict_proba(X)[0][1])
-
-    return {
-        "employable": bool(pred),
-        "confidence": round(confidence, 3),
-        "classified_skills": classified,
-        "input_summary": {
-            "cgpa": data.cgpa,
-            "num_skills": num_skills
-        }
-    }
