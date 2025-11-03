@@ -1,3 +1,14 @@
+.report-box {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 16px;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 /* General full-page layout */
 .full-page {
   width: 100vw;

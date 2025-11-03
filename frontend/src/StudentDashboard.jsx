@@ -154,18 +154,13 @@ const StudentDashboard = () => {
                 </button>
 
                 {/* Results Section */}
-                {skills.length > 0 && (
-                  <div className="results-section">
-                    <h3>🧠 Extracted Skills</h3>
-                    <ul className="skills-list">
-                      {skills.map((skill, index) => (
-                        <li key={index} className="skill-item">
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                {skills && (
+  <div className="results-section">
+    <h3>📊 Employability Report</h3>
+    <pre className="report-box">{skills}</pre>
+  </div>
+)}
+
               </div>
             ) : (
               <p>

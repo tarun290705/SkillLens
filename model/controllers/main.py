@@ -14,7 +14,7 @@ import google.generativeai as genai
 # ───────────── Setup ─────────────
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-gemini_model = genai.GenerativeModel("models/gemini-2.5-pro")
+gemini_model = genai.GenerativeModel("models/gemini-2.0-flash-exp")
 
 app = FastAPI(title="SkillLens Employability & Quiz API", version="3.0")
 
@@ -113,7 +113,7 @@ async def analyze_employability(resume: UploadFile = File(...), marks_card: Uplo
     try:
         resume_path = os.path.join(UPLOAD_DIR, resume.filename)
         marks_path = os.path.join(UPLOAD_DIR, marks_card.filename)
-
+        
         with open(resume_path, "wb") as f:
             f.write(await resume.read())
         with open(marks_path, "wb") as f:
