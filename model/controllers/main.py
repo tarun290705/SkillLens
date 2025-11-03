@@ -9,6 +9,8 @@ import json
 import random
 from dotenv import load_dotenv
 import google.generativeai as genai
+from PyPDF2 import PdfReader
+import traceback
 
 # ─────────────────────────────────────────────
 # 🔧 Configuration
@@ -42,9 +44,20 @@ except Exception:
 # (Replace with your actual implementation)
 # ─────────────────────────────────────────────
 def extract_text(file_path: str) -> str:
-    """Mock PDF/Docx text extractor."""
-    with open(file_path, "r", errors="ignore") as f:
-        return f.read()
+    """Extract text safely from PDF files."""
+    text = ""
+    if file_path.endswith(".pdf"):
+        try:
+            reader = PdfReader(file_path)
+            for page in reader.pages:
+                text += page.extract_text() or ""
+        except Exception as e:
+            text = f"Error reading PDF: {e}"
+    else:
+        # fallback for txt files or plain text
+        with open(file_path, "r", errors="ignore") as f:
+            text = f.read()
+    return text
 
 # ─────────────────────────────────────────────
 # 🧠 Gemini Skill Validator
@@ -64,7 +77,7 @@ def classify_skills(skills):
     }}
     """
 
-    response = genai.GenerativeModel("gemini-1.5-flash").generate_content(prompt)
+    response = genai.GenerativeModel("gemini-1.5-flash-latest").generate_content(prompt)
     try:
         result = json.loads(response.text)
         return result
@@ -76,16 +89,24 @@ def classify_skills(skills):
 # ─────────────────────────────────────────────
 @app.post("/extract-skills/")
 async def extract_skills(file: UploadFile = File(...)):
-    """Extract skills from uploaded resume and classify with Gemini."""
     try:
         file_path = os.path.join(UPLOAD_DIR, file.filename)
         with open(file_path, "wb") as f:
             f.write(await file.read())
 
         text = extract_text(file_path)
+        print("✅ Extracted Text Preview:", text[:300])
+
         prompt = f"Extract all professional, technical, and soft skills from this text:\n{text}\nReturn as JSON list."
-        response = genai.GenerativeModel("gemini-1.5-flash").generate_content(prompt)
-        skills = json.loads(response.text)
+        response = genai.GenerativeModel("gemini-1.5-flash-latest").generate_content(prompt)
+        print("✅ Gemini Raw Response:", response.text[:300])
+
+        try:
+            skills = json.loads(response.text)
+        except json.JSONDecodeError:
+            print("⚠️ Gemini returned non-JSON response.")
+            skills = [s.strip() for s in response.text.split(",") if s.strip()]
+
         classified = classify_skills(skills)
 
         return JSONResponse(content={
@@ -94,7 +115,10 @@ async def extract_skills(file: UploadFile = File(...)):
         }, status_code=200)
 
     except Exception as e:
+        print("❌ ERROR DETAILS:")
+        traceback.print_exc()   # <── shows the exact line and reason
         return JSONResponse(content={"error": str(e)}, status_code=500)
+
 
 # ─────────────────────────────────────────────
 # 📊 Employability Prediction
