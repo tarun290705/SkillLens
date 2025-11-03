@@ -22,33 +22,46 @@ const StudentDashboard = () => {
 
   // Handle File Upload and API Call
   const handleUpload = async () => {
-    if (resumeFiles.length === 0 && marksCardFiles.length === 0) {
-      alert("⚠️ Please upload at least one file (Resume or Marks Card).");
-      return;
-    }
+  if (resumeFiles.length === 0 || marksCardFiles.length === 0) {
+    alert("⚠️ Please upload both Resume and Marks Card files.");
+    return;
+  }
 
-    const formData = new FormData();
-    resumeFiles.forEach((file) => formData.append("files", file));
-    marksCardFiles.forEach((file) => formData.append("files", file));
+  const formData = new FormData();
+  formData.append("resume", resumeFiles[0]);
+  formData.append("marks_card", marksCardFiles[0]);
 
-    try {
-      setLoading(true);
-      const response = await fetch("http://localhost:8000/extract-multi/", {
-        method: "POST",
-        body: formData,
-      });
+  try {
+    setLoading(true);
+    const response = await fetch("http://localhost:8000/analyze-employability/", {
+      method: "POST",
+      body: formData,
+    });
 
-      if (!response.ok) throw new Error("Failed to extract skills");
+    if (!response.ok) throw new Error("Failed to analyze employability");
 
-      const data = await response.json();
-      setSkills(data.skills || []);
-    } catch (error) {
-      console.error(error);
-      alert("❌ Error extracting skills. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    const data = await response.json();
+
+    // Format as readable text
+    const report = `
+📊 Employability Analysis
+──────────────────────────────
+🎓 CGPA: ${data.cgpa}
+💼 Placement Chance: ${data.placement_chance}
+🧠 Technical Skills: ${data.skills.tech_skills.join(", ") || "None"}
+🤝 Soft Skills: ${data.skills.soft_skills.join(", ") || "None"}
+💬 Reason: ${data.reason}
+`;
+
+    setSkills(report);
+  } catch (error) {
+    console.error(error);
+    alert("❌ Error analyzing employability. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="dashboard-wrapper">
@@ -141,18 +154,13 @@ const StudentDashboard = () => {
                 </button>
 
                 {/* Results Section */}
-                {skills.length > 0 && (
-                  <div className="results-section">
-                    <h3>🧠 Extracted Skills</h3>
-                    <ul className="skills-list">
-                      {skills.map((skill, index) => (
-                        <li key={index} className="skill-item">
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                {skills && (
+  <div className="results-section">
+    <h3>📊 Employability Report</h3>
+    <pre className="report-box">{skills}</pre>
+  </div>
+)}
+
               </div>
             ) : (
               <p>
