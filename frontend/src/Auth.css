@@ -501,4 +501,34 @@ body {
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
 }
+.emoji-left,
+.emoji-right {
+  font-size: 2.2rem;
+  margin: 0 10px;
+  vertical-align: middle;
+}
 
+.auth-right h2 {
+  font-size: 1.8rem;
+}
+
+.auth-right p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.emoji-left,
+.emoji-right {
+  font-size: 2.2rem;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.auth-right h2 {
+  font-size: 1.8rem;
+}
+
+.auth-right p {
+  font-size: 1rem;
+  line-height: 1.6;
+}

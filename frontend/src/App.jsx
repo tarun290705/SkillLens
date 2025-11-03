@@ -4,7 +4,13 @@ import RoleSelection from "./RoleSelection";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./Register";
 import StudentDashboard from "./StudentDashboard";
-import PlacementOfficerDashboard from "./PlacementOfficerDashboard";
+import PlacementOfficerDashboard from "./PlacementOfficerDashboard";import ChatBoltPage from "./ChatBoltPage";
+import LibraryPage from "./LibraryPage";
+
+
+
+
+
 
 function App() {
   return (
@@ -15,6 +21,9 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/placement-dashboard" element={<PlacementOfficerDashboard />} />
+         <Route path="/dashboard" element={<StudentDashboard />} />
+  <Route path="/chatbolt" element={<ChatBoltPage />} />
+<Route path="/library" element={<LibraryPage />} />
       </Routes>
     </Router>
   );

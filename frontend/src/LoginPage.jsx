@@ -19,7 +19,7 @@ const LoginPage = () => {
 
       const userRole = response.user?.role || "student";
 
-      alert(`Logged in successfully as ${userRole}: ${response.user.username}`);
+      alert(`✅ Logged in successfully as ${userRole}: ${response.user.username}`);
 
       localStorage.setItem("token", response.access);
       localStorage.setItem("role", userRole);
@@ -31,49 +31,57 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error("Login failed:", error);
-      alert("Invalid credentials or role. Please try again.");
+      alert("❌ Invalid credentials or role. Please try again.");
     }
   };
 
   return (
     <div className="auth-container">
-      {/* Heading */}
-      <h1 className="main-heading">SkillLens</h1>
+      {/* Main Heading with Emojis */}
+      <h1 className="main-heading">
+        <span className="emoji-left">🎓</span> SkillLens <span className="emoji-right">💼</span>
+      </h1>
 
       <div className="auth-box">
         <div className="auth-left">
-          <h2>Login</h2>
+          <h2>🔐 Login</h2>
           <form onSubmit={handleLogin}>
-            <label>Username</label>
+            <label>👤 Username</label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              placeholder="Enter your username"
             />
 
-            <label>Password</label>
+            <label>🔑 Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              placeholder="Enter your password"
             />
 
-            <button type="submit">Login</button>
+            <button type="submit">🚀 Login</button>
 
             <p>
               Don’t have an account?{" "}
               <Link to="/register" className="link">
-                Sign Up
+                Sign Up ✨
               </Link>
             </p>
           </form>
         </div>
 
         <div className="auth-right">
-          <h2>Welcome Back!</h2>
-          <p>Login to continue your journey as a {role}.</p>
+          <h2>🎯 Welcome Back!</h2>
+          <p>
+            Login to continue your <b>SkillLens</b> placement journey as a{" "}
+            <b>{role}</b>. <br />
+            🌟 Stay motivated and keep pushing towards success!
+          </p>
         </div>
       </div>
     </div>

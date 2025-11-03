@@ -87,6 +87,7 @@ body {
 }
 
 .role-container {
+    color:#c557c3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,16 +144,85 @@ body {
 }
 
 .role-btn:hover {
-  background: linear-gradient(135deg, #f47ee0, #d5b6e3);
+  background: linear-gradient(135deg, #c557c3, #c557c3);
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(122, 160, 143, 0.4);
 }
 
 /* Optional - distinct colors for roles */
 .student {
-  background: linear-gradient(135deg, #e498e3, #a7d9c9);
+  background: linear-gradient(135deg, #c557c3, #c557c3);
 }
 
 .officer {
-  background: linear-gradient(135deg, #f5c6c2, #f1b5b0);
+  background: linear-gradient(135deg, #c557c3, #c557c3);
+}
+.main-heading {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: blakc; /* matches pastel teal */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #c557c3, #c557c3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Poppins", sans-serif;
+}
+/* Floating Emoji Styles */
+.emoji {
+  position: absolute;
+  font-size: 2.2rem;
+  opacity: 0.8;
+  animation: float 4s ease-in-out infinite;
+  z-index: 1;
+}
+
+.emoji-top-left {
+  top: 40px;
+  left: 50px;
+}
+
+.emoji-top-right {
+  top: 40px;
+  right: 50px;
+}
+
+.emoji-bottom-left {
+  bottom: 40px;
+  left: 60px;
+}
+
+.emoji-bottom-right {
+  bottom: 40px;
+  right: 60px;
+}
+
+/* Floating animation for gentle motion */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Heading Sparkle */
+.spark {
+  animation: sparkle 1.5s infinite alternate;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
