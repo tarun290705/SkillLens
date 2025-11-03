@@ -19,7 +19,7 @@ const RoleSelection = () => {
           <button className="role-btn student" onClick={() => handleSelect("student")}>
             🎓 Student
           </button>
-          <button className="role-btn officer" onClick={() => handleSelect("placement")}>
+          <button className="role-btn officer" onClick={() => handleSelect("officer")}>
             🧑‍💼 Placement Officer
           </button>
         </div>

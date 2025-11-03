@@ -1,20 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { registerUser } from "./api/auth";
+import { useLocation, Link } from "react-router-dom";
 import "./Auth.css";
 
 const Register = () => {
+  const location = useLocation();
+  const selectedRole = location.state?.role || "student";
+  
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Registered successfully!");
+    setLoading(true);
+    try {
+      const payload = { ...formData, role: selectedRole };
+      const res = await registerUser(payload);
+      alert(`Registered successfully as ${res.user?.role || selectedRole}!`);
+    } catch(error) {
+       console.error(error);
+      alert(error.error || "Registration failed!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
