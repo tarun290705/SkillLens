@@ -33,7 +33,7 @@ const LoginPage = () => {
 
   return (
     <div className="auth-container">
-      {/* Main Heading */}
+      {/* Heading */}
       <h1 className="main-heading">SkillLens</h1>
 
       <div className="auth-box">
@@ -47,6 +47,7 @@ const LoginPage = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
+
             <label>Password</label>
             <input
               type="password"
@@ -54,7 +55,9 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+
             <button type="submit">Login</button>
+
             <p>
               Don’t have an account?{" "}
               <Link to="/register" className="link">
