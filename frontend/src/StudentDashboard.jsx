@@ -3,46 +3,7 @@ import "./Dashboard.css";
 import backgroundImage from "./assets/dashboard-bg.png"; // ✅ Ensure this path is correct
 
 const StudentDashboard = () => {
-<<<<<<< HEAD
-  const [selectedFiles, setSelectedFiles] = useState([]);
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [selectedSection, setSelectedSection] = useState("Skill Extractor");
-
-  const handleFileChange = (e) => {
-    setSelectedFiles(Array.from(e.target.files));
-  };
-
-  const handleUpload = async () => {
-    if (selectedFiles.length === 0) {
-      alert("Please select at least one file!");
-      return;
-    }
-
-    const formData = new FormData();
-    selectedFiles.forEach((file) => formData.append("files", file));
-
-    try {
-      setLoading(true);
-      const response = await fetch("http://127.0.0.1:8000/extract-multi/", {
-          method: "POST",
-          body: formData,
-      });
-
-
-      if (!response.ok) throw new Error("Upload failed");
-      const data = await response.json();
-      setSkills(data.skills || []);
-    } catch (error) {
-      console.error(error);
-      alert("Error extracting skills");
-    } finally {
-      setLoading(false);
-    }
-  };
-=======
   const [selectedSection, setSelectedSection] = useState("Profile");
->>>>>>> 8af09b084a0131f64879b25a7f54792d455e55c1
 
   return (
     <div className="dashboard-wrapper">
