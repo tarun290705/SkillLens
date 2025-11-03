@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #002b45, #0077b6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.role-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 60px 80px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.role-card:hover {
+  transform: translateY(-5px);
+}
+
+.role-heading {
+  font-size: 2.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.role-subtext {
+  font-size: 1.1rem;
+  color: #cde9f5;
+  margin-bottom: 40px;
+}
+
+.role-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.role-btn {
+  background: linear-gradient(135deg, #0096c7, #00b4d8);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 183, 255, 0.4);
+}
+
+.role-btn:hover {
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 183, 255, 0.6);
+}
+
+.student {
+  background: linear-gradient(135deg, #00b4d8, #0096c7);
+}
+
+.officer {
+  background: linear-gradient(135deg, #00b4d8, #023e8a);
+}
