@@ -60,7 +60,7 @@
   display: inline-block;
   margin-top: 10px;
   background: white;
-  color: #c77dff;
+  color: #a37ec0;
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 10px;
@@ -71,4 +71,103 @@
 .company-card a:hover {
   background: #ffb6c1;
   color: white;
+}
+.library-container {
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  color: #2d2d2d;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Header */
+.library-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.library-header h1 {
+  font-size: 2.2rem;
+  color: #a880c5;
+  text-shadow: 0 0 10px rgba(102, 51, 153, 0.3);
+}
+
+.back-btn {
+  position: absolute;
+  left: 40px;
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+/* Company List */
+.company-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Company Cards */
+.company-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 25px;
+  width: 320px;
+  box-shadow: 0 4px 20px rgba(160, 100, 200, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.company-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(130, 70, 180, 0.4);
+}
+
+.company-card h2 {
+  color: #a984ca;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.company-card p {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.company-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #9471ad;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.company-card a:hover {
+  color: #bb87cf;
+  text-decoration: underline;
 }

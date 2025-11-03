@@ -1022,5 +1022,596 @@ button:hover {
   transform: scale(1.1);
   box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
 }
+.upload-section {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.file-input {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #f8f9fa;
+}
+
+.upload-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #0056b3;
+}
+
+.results-section {
+  margin-top: 2rem;
+  background: #ffffffc9;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skills-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  padding: 0;
+}
+
+.skill-item {
+  background-color: #e0f7fa;
+  color: #00796b;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.upload-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.upload-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 25px 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.upload-card:hover {
+  transform: scale(1.03);
+}
+
+.file-input {
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px dashed #007bff;
+  border-radius: 10px;
+  background: #f0f8ff;
+  color: #333;
+  cursor: pointer;
+}
+
+.upload-btn {
+  margin-top: 40px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #007bff, #00bfff);
+  color: rgb(203, 120, 120);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background: linear-gradient(135deg, #005fcc, #00a2e8);
+}
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.upload-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* ✨ Each upload card (Marks Card / Resume) */
+.upload-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 35px 50px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.upload-card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 30px rgba(138, 43, 226, 0.3);
+}
+
+/* ✨ File input */
+.file-input {
+  margin-top: 15px;
+  padding: 12px;
+  border: 2px dashed #9b59b6;
+  border-radius: 12px;
+  background: rgba(240, 240, 255, 0.4);
+  color: #2c2c54;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-input:hover {
+  background: rgba(200, 160, 255, 0.3);
+  border-color: #8e44ad;
+}
+
+/* 🌈 Upload button */
+.upload-btn {
+  margin-top: 40px;
+  padding: 14px 35px;
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: linear-gradient(135deg, #9b59b6, #673ab7);
+  box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
+}
+
+/* 🧠 Results section */
+.results-section {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  width: 60%;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-item {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 60px;
+  overflow: hidden; /* removes any unnecessary scroll */
+}
+
+.upload-section p {
+  font-size: 1.2rem;
+  color: #f1f1f1;
+  margin-bottom: 30px;
+}
+
+/* 🟣 Two-column layout for boxes */
+.upload-boxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 70%;
+  justify-items: center;
+}
+
+/* ✨ Each upload card (Marks Card / Resume) */
+.upload-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 35px 50px;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.upload-card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 30px rgba(138, 43, 226, 0.3);
+}
+
+/* 📂 File input */
+.file-input {
+  margin-top: 15px;
+  padding: 12px;
+  border: 2px dashed #9b59b6;
+  border-radius: 12px;
+  background: rgba(240, 240, 255, 0.4);
+  color: #2c2c54;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.file-input:hover {
+  background: rgba(200, 160, 255, 0.3);
+  border-color: #8e44ad;
+}
+
+/* 🚀 Upload button centered below */
+.upload-btn {
+  margin-top: 50px;
+  padding: 14px 35px;
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: linear-gradient(135deg, #9b59b6, #673ab7);
+  box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
+}
+
+/* 🧠 Results section */
+.results-section {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  width: 60%;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-item {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 📱 Responsive adjustment for small screens */
+@media (max-width: 768px) {
+  .upload-boxes {
+    grid-template-columns: 1fr;
+  }
+
+  .upload-card {
+    max-width: 90%;
+  }
+}
+/* 🌌 Upload Section - Centered & Scroll-Free */
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 40px;
+  min-height: 60vh;
+  overflow: hidden; /* remove any scrollbars */
+}
+
+.upload-section p {
+  font-size: 1.1rem;
+  color: #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* 🟪 Two-column layout for upload boxes */
+.upload-boxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 60%;
+  justify-items: center;
+}
+
+/* ✨ Smaller, elegant upload card */
+.upload-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px 35px;
+  width: 85%;
+  max-width: 280px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.upload-card:hover {
+  transform: scale(1.04);
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+}
+
+/* 📂 File input */
+.file-input {
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px dashed #9b59b6;
+  border-radius: 10px;
+  background: rgba(240, 240, 255, 0.3);
+  color: #2c2c54;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.file-input:hover {
+  background: rgba(200, 160, 255, 0.3);
+  border-color: #8e44ad;
+}
+
+/* 🚀 Upload Button */
+.upload-btn {
+  margin-top: 35px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: linear-gradient(135deg, #9b59b6, #673ab7);
+  box-shadow: 0 8px 20px rgba(155, 89, 182, 0.45);
+}
+
+/* 🧠 Results Section */
+.results-section {
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  width: 55%;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-item {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 18px;
+  font-weight: 500;
+  font-size: 13px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 📱 Responsive for smaller screens */
+@media (max-width: 768px) {
+  .upload-boxes {
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
+
+  .upload-card {
+    max-width: 80%;
+  }
+}
+/* 🌌 Upload Section - Centered & Scroll-Free */
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 70vh;
+  overflow: hidden; /* no scroll */
+  margin-top: 30px;
+}
+
+.upload-section p {
+  font-size: 1.1rem;
+  color: #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* 🟪 Stack boxes vertically */
+.upload-boxes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+}
+
+/* ✨ Smaller, neat upload card */
+.upload-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px 35px;
+  width: 85%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.upload-card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+}
+
+/* 📂 File input */
+.file-input {
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px dashed #9b59b6;
+  border-radius: 10px;
+  background: rgba(240, 240, 255, 0.3);
+  color: #2c2c54;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.file-input:hover {
+  background: rgba(200, 160, 255, 0.3);
+  border-color: #8e44ad;
+}
+
+/* 🚀 Upload Button */
+.upload-btn {
+  margin-top: 35px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: linear-gradient(135deg, #9b59b6, #673ab7);
+  box-shadow: 0 8px 20px rgba(155, 89, 182, 0.45);
+}
+
+/* 🧠 Results Section */
+.results-section {
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  width: 55%;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-item {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 18px;
+  font-weight: 500;
+  font-size: 13px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 📱 Responsive for smaller screens */
+@media (max-width: 768px) {
+  .upload-card {
+    max-width: 90%;
+  }
+
+  .results-section {
+    width: 85%;
+  }
+}
 
 

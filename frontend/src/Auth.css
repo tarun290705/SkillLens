@@ -388,7 +388,7 @@ body {
 .auth-box {
   display: flex;
   background-color: #ffffff;
-  color: white;
+  color: black;
   width: 850px;
   border-radius: 20px;
   overflow: hidden;
@@ -424,7 +424,7 @@ body {
   border: none;
   border-bottom: 2px solid #a44c71;
   background: transparent;
-  color: white;
+  color: black;
   outline: none;
   font-size: 1rem;
 }
@@ -529,6 +529,7 @@ body {
 }
 
 .auth-right p {
+
   font-size: 1rem;
   line-height: 1.6;
 }
