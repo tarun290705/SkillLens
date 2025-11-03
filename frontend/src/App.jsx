@@ -7,8 +7,8 @@ import StudentDashboard from "./StudentDashboard";
 import PlacementOfficerDashboard from "./PlacementOfficerDashboard";import ChatBoltPage from "./ChatBoltPage";
 import LibraryPage from "./LibraryPage";
 
-
-
+import CodeEditor from "./component/CodeEditor"
+import { Box } from "@chakra-ui/react";
 
 
 
@@ -24,6 +24,8 @@ function App() {
          <Route path="/dashboard" element={<StudentDashboard />} />
   <Route path="/chatbolt" element={<ChatBoltPage />} />
 <Route path="/library" element={<LibraryPage />} />
+<Route path="/code-editor" element={<CodeEditor/>}/>
+
       </Routes>
     </Router>
   );
