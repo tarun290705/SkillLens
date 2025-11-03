@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 import os
-from model.extractor import extract_text, extract_tech_skills_with_gemini
+from extractor import extract_text, extract_tech_skills_with_gemini
 
 app = FastAPI(title="SkillLens API", version="1.0")
 

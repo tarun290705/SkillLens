@@ -1,30 +1,37 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { loginUser } from "./api/auth";
 import "./Auth.css";
 
 const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const role = location.state?.role || "User";
+  const role = location.state?.role || "student";
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    try {
+      const data = { username, password };
+      const response = await loginUser(data);
 
-    // Mock login validation
-    if (username && password) {
-      // Redirect based on role
-      if (role === "student") {
-        navigate("/student-dashboard", { state: { username, role } });
-      } else if (role === "placement") {
-        navigate("/placement-dashboard", { state: { username, role } });
-      } else {
-        alert("Invalid role selected!");
+      const userRole = response.user?.role || "student";
+
+      alert(`Logged in successfully as ${userRole}: ${response.user.username}`);
+
+      localStorage.setItem("token", response.access);
+      localStorage.setItem("role", userRole);
+
+      if (userRole === "student") {
+        navigate("/student-dashboard");
+      } else if (userRole === "officer") {
+        navigate("/officer-dashboard");
       }
-    } else {
-      alert("Please enter valid credentials.");
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Invalid credentials or role. Please try again.");
     }
   };
 
