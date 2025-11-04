@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSave, FaUserEdit, FaArrowLeft, FaUserGraduate } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import API from "./api/axios"; // Axios instance
 import "./ProfilePage.css";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     dob: "",
@@ -17,20 +19,40 @@ const ProfilePage = () => {
     skills: "",
     linkedin: "",
     github: "",
-    dreamCompany: "",
+    dream_company: "", 
   });
 
+  // Fetch existing profile when component loads
+  useEffect(() => {
+  const fetchProfile = async () => {
+    try {
+      const res = await API.get("profile/");
+      setFormData(res.data);
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.log("No existing profile, please fill out the form.");
+      } else {
+        console.error("Error fetching profile:", error);
+      }
+    }
+  };
+  fetchProfile();
+}, []);
+
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSave = () => {
-    alert("✅ Profile Saved Successfully!");
-  };
-
-  const handleUpdate = () => {
-    alert("🔄 Profile Updated Successfully!");
-  };
+  // Save or update profile
+  const handleSaveOrUpdate = async () => {
+  try {
+    const res = await API.post("profile/", formData);
+    alert("✅ Profile saved successfully!");
+  } catch (error) {
+    console.error("Error saving profile:", error.response?.data || error);
+  }
+};
 
   return (
     <div className="profile-page">
@@ -44,10 +66,9 @@ const ProfilePage = () => {
         </h1>
       </header>
 
-      {/* Profile Heading */}
       <h2 className="profile-heading">🎓 Profile ✨</h2>
 
-      {/* Profile Card */}
+      {/* Profile Form */}
       <div className="profile-card">
         <form className="profile-form">
           <div className="form-columns">
@@ -180,8 +201,8 @@ const ProfilePage = () => {
                 <label>Dream Company</label>
                 <input
                   type="text"
-                  name="dreamCompany"
-                  value={formData.dreamCompany}
+                  name="dream_company"
+                  value={formData.dream_company}
                   onChange={handleChange}
                   placeholder="Enter dream company name"
                 />
@@ -189,13 +210,14 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          {/* Buttons */}
+          {/* Save Button */}
           <div className="btn-container">
-            <button type="button" className="save-btn" onClick={handleSave}>
+            <button
+              type="button"
+              className="save-btn"
+              onClick={handleSaveOrUpdate}
+            >
               <FaSave /> Save
-            </button>
-            <button type="button" className="update-btn" onClick={handleUpdate}>
-              <FaUserEdit /> Update
             </button>
           </div>
         </form>
