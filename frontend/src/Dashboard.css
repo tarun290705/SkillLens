@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 /* === GENERAL FULL PAGE === */
 .dashboard-wrapper {
   position: relative;
   width: 100%;
-=======
 .report-box {
   background: #111827;
   color: #e5e7eb;
@@ -18,7 +16,6 @@
 /* General full-page layout */
 .full-page {
   width: 100vw;
->>>>>>> 08241856de45d5239b43d1f0b4f0a8f62423d9f3
   height: 100vh;
   overflow: hidden;
 }
@@ -79,6 +76,7 @@
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 1px;
+  color: white;
 }
 
 .toolbar-right {

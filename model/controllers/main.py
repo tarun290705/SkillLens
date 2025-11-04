@@ -220,3 +220,39 @@ async def generate_quiz_api(data: dict):
     except Exception as e:
         print("❌ Error generating quiz:", e)
         raise HTTPException(status_code=500, detail=str(e))
+
+
+class Message(BaseModel):
+    message: str
+
+
+# ------------------- ROUTE -------------------
+@app.post("/ask-gemini")
+async def ask_gemini(msg: Message):
+    try:
+        if not msg.message.strip():
+            return {"reply": "Please provide a question."}
+
+        prompt = f"""
+You are ChatBolt, an AI mentor specializing in:
+- College placements guidance
+- Resume writing and skill evaluation
+- Interview preparation (HR + technical)
+- Career roadmap advice
+
+User Query: {msg.message}
+
+Provide a clear, friendly, helpful response.
+"""
+
+        # Use gemini_model, NOT joblib model
+        result = gemini_model.generate_content(prompt)
+        if not result or not hasattr(result, "text"):
+            raise Exception("No response from Gemini API")
+
+        reply = result.text.strip()
+        return {"reply": reply}
+
+    except Exception as e:
+        print("❌ Gemini API Error:", e)
+        raise HTTPException(status_code=500, detail="Gemini API failed. Check logs.")
