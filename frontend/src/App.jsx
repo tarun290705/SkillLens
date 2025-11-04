@@ -11,6 +11,7 @@ import ProfilePage from "./ProfilePage";
 
 import CodeEditor from "./component/CodeEditor"
 import { Box } from "@chakra-ui/react";
+import QuizGenerator from "./quiz-component/quiz-generator";
 
 
 
@@ -28,7 +29,7 @@ function App() {
 <Route path="/library" element={<LibraryPage />} />
 <Route path="/profile" element={<ProfilePage />} />
 <Route path="/code-editor" element={<CodeEditor/>}/>
-
+<Route path="/quiz-generator" element={<QuizGenerator/>}/>
       </Routes>
     </Router>
   );

@@ -10,11 +10,13 @@ import pdfplumber
 from docx import Document
 from dotenv import load_dotenv
 import google.generativeai as genai
+from pydantic import BaseModel
+from quiz_generator import generate_quiz  
 
 # ───────────── Setup ─────────────
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-gemini_model = genai.GenerativeModel("models/gemini-2.0-flash-exp")
+gemini_model = genai.GenerativeModel("models/gemini-2.0-flash-lite")
 
 app = FastAPI(title="SkillLens Employability & Quiz API", version="3.0")
 
@@ -109,16 +111,32 @@ def extract_cgpa(text):
 
 # ───────────── Employability Analysis ─────────────
 @app.post("/analyze-employability/")
-async def analyze_employability(resume: UploadFile = File(...), marks_card: UploadFile = File(...)):
+async def analyze_employability(
+    resume: UploadFile = File(...),
+    marks_card: UploadFile = File(...)
+):
     try:
-        resume_path = os.path.join(UPLOAD_DIR, resume.filename)
-        marks_path = os.path.join(UPLOAD_DIR, marks_card.filename)
-        
+        os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+        # Safe filenames
+        resume_path = os.path.join(UPLOAD_DIR, f"resume_{resume.filename.replace(' ', '_')}")
+        marks_path = os.path.join(UPLOAD_DIR, f"marks_{marks_card.filename.replace(' ', '_')}")
+
+        # Save uploaded files
         with open(resume_path, "wb") as f:
             f.write(await resume.read())
         with open(marks_path, "wb") as f:
             f.write(await marks_card.read())
 
+        print("📁 Uploaded files:", resume.filename, marks_card.filename)
+        print("📂 Upload directory contents:", os.listdir(UPLOAD_DIR))
+
+        if not os.path.exists(resume_path):
+            raise HTTPException(status_code=400, detail=f"Resume not found at {resume_path}")
+        if not os.path.exists(marks_path):
+            raise HTTPException(status_code=400, detail=f"Marks card not found at {marks_path}")
+
+        # Extract data
         resume_text = extract_text(resume_path)
         marks_text = extract_text(marks_path)
 
@@ -169,7 +187,7 @@ async def analyze_employability(resume: UploadFile = File(...), marks_card: Uplo
 @app.post("/extract-skills/")
 async def extract_skills(file: UploadFile = File(...)):
     try:
-        path = os.path.join(UPLOAD_DIR, file.filename)
+        path = os.path.join(UPLOAD_DIR, f"{file.filename.replace(' ', '_')}")
         with open(path, "wb") as f:
             f.write(await file.read())
 
@@ -182,3 +200,21 @@ async def extract_skills(file: UploadFile = File(...)):
     except Exception as e:
         print("❌ Error extracting skills:", e)
         return JSONResponse(content={"error": str(e)}, status_code=500)
+    
+
+class QuizRequest(BaseModel):
+    skill: str
+    level: str
+    num_questions: int = 5
+
+@app.post("/generate-quiz/")
+async def generate_quiz_api(data: dict):
+    try:
+        skill = data.get("skill", "Python")
+        level = data.get("level", "easy")
+        num = data.get("num_questions", 5)
+        quiz = generate_quiz(skill, level, num)
+        return {"questions": quiz}
+    except Exception as e:
+        print("❌ Error generating quiz:", e)
+        raise HTTPException(status_code=500, detail=str(e))
