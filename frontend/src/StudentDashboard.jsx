@@ -7,7 +7,8 @@ const StudentDashboard = () => {
   const [selectedSection, setSelectedSection] = useState("Profile");
   const [resumeFiles, setResumeFiles] = useState([]);
   const [marksCardFiles, setMarksCardFiles] = useState([]);
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState([]);        // array of extracted skills
+  const [report, setReport] = useState("");        // formatted employability report
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -20,46 +21,53 @@ const StudentDashboard = () => {
   };
 
   const handleUpload = async () => {
-  if (resumeFiles.length === 0 || marksCardFiles.length === 0) {
-    alert("⚠️ Please upload both Resume and Marks Card files.");
-    return;
-  }
+    if (resumeFiles.length === 0 || marksCardFiles.length === 0) {
+      alert("⚠️ Please upload both Resume and Marks Card files.");
+      return;
+    }
 
-  const formData = new FormData();
-  formData.append("resume", resumeFiles[0]);
-  formData.append("marks_card", marksCardFiles[0]);
+    const formData = new FormData();
+    formData.append("resume", resumeFiles[0]);
+    formData.append("marks_card", marksCardFiles[0]);
 
-  try {
-    setLoading(true);
-    const response = await fetch("http://localhost:8000/analyze-employability/", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      setLoading(true);
 
-    if (!response.ok) throw new Error("Failed to analyze employability");
+      const response = await fetch("http://localhost:8000/analyze-employability/", {
+        method: "POST",
+        body: formData,
+      });
 
-    const data = await response.json();
+      if (!response.ok) throw new Error("Failed to analyze employability");
 
-    // Format as readable text
-    const report = `
-📊 Employability Analysis
-──────────────────────────────
+      const data = await response.json();
+
+      // store extracted skills
+      const extracted = [
+        ...data.skills.tech_skills,
+        ...data.skills.soft_skills,
+      ];
+      setSkills(extracted);
+
+      // formatted report
+      setReport(
+`📊 EMPLOYABILITY REPORT
+────────────────────────────────
 🎓 CGPA: ${data.cgpa}
 💼 Placement Chance: ${data.placement_chance}
 🧠 Technical Skills: ${data.skills.tech_skills.join(", ") || "None"}
 🤝 Soft Skills: ${data.skills.soft_skills.join(", ") || "None"}
 💬 Reason: ${data.reason}
-`;
+`
+      );
 
-    setSkills(report);
-  } catch (error) {
-    console.error(error);
-    alert("❌ Error analyzing employability. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
-
+    } catch (error) {
+      console.error(error);
+      alert("❌ Error analyzing employability. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="dashboard-wrapper">
@@ -75,45 +83,14 @@ const StudentDashboard = () => {
           <h1 className="brand-name">SkillLens</h1>
 
           <div className="toolbar-right">
-            <button className="toolbar-btn" onClick={() => navigate("/profile")}>
-              Profile
-            </button>
-
-            <button
-              className="toolbar-btn"
-              onClick={() => setSelectedSection("Placement Predictions")}
-            >
-              Placement Predictions
-            </button>
-
-            <button className="toolbar-btn" onClick={() => navigate("/gopro")}>
-              ⭐ Go Pro
-            </button>
-
-            <button
-              className="toolbar-btn"
-              onClick={() => navigate("/upskilling")}
-            >
-              🚀 Upskilling
-            </button>
-
-            <button className="toolbar-btn" onClick={() => navigate("/learn")}>
-              🎓 Learn
-            </button>
-
-            <button className="toolbar-btn" onClick={() => navigate("/alumni")}>
-              🧑‍💼 Alumni
-            </button>
-
-            <button className="toolbar-btn" onClick={() => navigate("/library")}>
-              📚 Library
-            </button>
-
-            {/* 💻 Code Editor Button */}
-            <button className="toolbar-btn" onClick={() => navigate("/CodeEditor")}>
-              💻 Code Editor
-            </button>
-
+            <button className="toolbar-btn" onClick={() => navigate("/profile")}>Profile</button>
+            <button className="toolbar-btn" onClick={() => setSelectedSection("Placement Predictions")}>Placement Predictions</button>
+            <button className="toolbar-btn" onClick={() => navigate("/gopro")}>⭐ Go Pro</button>
+            <button className="toolbar-btn" onClick={() => navigate("/upskilling")}>🚀 Upskilling</button>
+            <button className="toolbar-btn" onClick={() => navigate("/learn")}>🎓 Learn</button>
+            <button className="toolbar-btn" onClick={() => navigate("/alumni")}>🧑‍💼 Alumni</button>
+            <button className="toolbar-btn" onClick={() => navigate("/library")}>📚 Library</button>
+            <button className="toolbar-btn" onClick={() => navigate("/code-editor")}>💻 Code Editor</button>
             <button className="notification-btn" title="Notifications">
               🔔
               <span className="notification-badge">2</span>
@@ -131,31 +108,17 @@ const StudentDashboard = () => {
 
                 <div className="upload-boxes">
                   <div className="upload-card">
-                    <h3>📄 Upload Resume(s)</h3>
-                    <input
-                      type="file"
-                      multiple
-                      onChange={handleResumeChange}
-                      className="file-input"
-                    />
+                    <h3>📄 Upload Resume</h3>
+                    <input type="file" onChange={handleResumeChange} className="file-input" />
                   </div>
 
                   <div className="upload-card">
-                    <h3>🎯 Upload Marks Card(s)</h3>
-                    <input
-                      type="file"
-                      multiple
-                      onChange={handleMarksCardChange}
-                      className="file-input"
-                    />
+                    <h3>🎯 Upload Marks Card</h3>
+                    <input type="file" onChange={handleMarksCardChange} className="file-input" />
                   </div>
                 </div>
 
-                <button
-                  className="upload-btn"
-                  onClick={handleUpload}
-                  disabled={loading}
-                >
+                <button className="upload-btn" onClick={handleUpload} disabled={loading}>
                   {loading ? "⏳ Extracting..." : "🚀 Extract Skills"}
                 </button>
 
@@ -164,21 +127,14 @@ const StudentDashboard = () => {
                     <h3>🧠 Extracted Skills</h3>
                     <ul className="skills-list">
                       {skills.map((skill, index) => (
-                        <li key={index} className="skill-item">
-                          {skill}
-                        </li>
+                        <li key={index} className="skill-item">{skill}</li>
                       ))}
                     </ul>
+
+                    <h3>📊 Employability Report</h3>
+                    <pre className="report-box">{report}</pre>
                   </div>
                 )}
-                {/* Results Section */}
-                {skills && (
-  <div className="results-section">
-    <h3>📊 Employability Report</h3>
-    <pre className="report-box">{skills}</pre>
-  </div>
-)}
-
               </div>
             ) : (
               <p>
@@ -189,11 +145,7 @@ const StudentDashboard = () => {
           </section>
         </main>
 
-        <button
-          className="chatbolt-icon"
-          title="Open ChatBolt"
-          onClick={() => navigate("/chatbolt")}
-        >
+        <button className="chatbolt-icon" title="Open ChatBolt" onClick={() => navigate("/chatbolt")}>
           💬
         </button>
       </div>
