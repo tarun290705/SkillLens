@@ -1,4 +1,3 @@
-# student/models.py
 from django.db import models
 from django.conf import settings
 
@@ -13,6 +12,9 @@ class StudentProfile(models.Model):
     year = models.CharField(max_length=20, blank=True)
     semester = models.CharField(max_length=20, blank=True)
     skills = models.JSONField(default=list, blank=True)
+    linkedin = models.URLField(blank=True)
+    github = models.URLField(blank=True)
+    dream_company = models.CharField(max_length=100, blank=True)
     resume = models.FileField(upload_to="resumes/", blank=True, null=True)
 
     def __str__(self):

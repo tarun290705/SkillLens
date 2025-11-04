@@ -16,6 +16,9 @@ import GoProPage from "./GoProPage";
 import AlumniPage from "./AlumniPage";
 import LearnPage from "./LearnPage";
 import CompanyInfoPage from "./CompanyInfoPage";
+import QuizGenerator from "./quiz-component/quiz-generator";
+
+
 
 function App() {
   return (
@@ -36,6 +39,7 @@ function App() {
 <Route path="/alumni" element={<AlumniPage />} />
  <Route path="/learn" element={<LearnPage />} />
  <Route path="/companyinfo" element={<CompanyInfoPage />} />
+<Route path="/quiz-generator" element={<QuizGenerator/>}/>
       </Routes>
     </Router>
   );
