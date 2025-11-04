@@ -12,6 +12,8 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 from pydantic import BaseModel
 from quiz_generator import generate_quiz  
+from PyPDF2 import PdfReader
+import traceback
 
 # ───────────── Setup ─────────────
 load_dotenv()
