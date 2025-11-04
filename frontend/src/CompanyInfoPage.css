@@ -1,0 +1,133 @@
+.company-page {
+  text-align: center;
+  padding: 40px;
+  color: #fff;
+  background: linear-gradient(135deg, #000000, #222222);
+  min-height: 100vh;
+}
+
+.company-header h1 {
+  font-size: 2.2rem;
+  color: #00bcd4;
+  margin-bottom: 10px;
+}
+
+.company-header p {
+  color: #bdbdbd;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.company-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.company-card {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 15px;
+  padding: 20px;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+  transition: transform 0.3s;
+}
+
+.company-card:hover {
+  transform: scale(1.05);
+}
+
+.company-card h2 {
+  color: #00e5ff;
+}
+
+.notify-btn {
+  background: #00bcd4;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.notify-btn:hover {
+  background: #0097a7;
+  color: white;
+}
+.company-page {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #fdfdfd, #f0f4f8);
+  min-height: 100vh;
+  color: #333;
+  font-family: "Poppins", sans-serif;
+}
+
+.company-header h1 {
+  font-size: 2.2rem;
+  color: #004aad;
+  margin-bottom: 10px;
+}
+
+.company-header p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.company-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.company-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 25px;
+  width: 310px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.company-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.company-card h2 {
+  color: #007bff;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.company-card p {
+  margin: 6px 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.notify-btn {
+  background: #007bff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.notify-btn:hover {
+  background: #0056b3;
+}

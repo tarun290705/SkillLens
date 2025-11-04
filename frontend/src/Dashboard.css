@@ -1,138 +1,171 @@
-/* General full-page layout */
-.full-page {
-  width: 100vw;
+/* === GENERAL FULL PAGE === */
+.dashboard-wrapper {
+  position: relative;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
 }
 
-/* Dark Mode Background */
-.dashboard-container.dark-mode {
-  background: linear-gradient(135deg, #071221, #0b2748);
-  color: white;
-  font-family: "Poppins", sans-serif;
-  display: flex;
-  flex-direction: column;
+/* Background image */
+.background-image {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -2;
 }
 
-/* Toolbar (Top Bar) */
+/* Overlay for readability */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: -1;
+}
+
+/* === DASHBOARD CONTAINER === */
+.dashboard-container {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+}
+
+/* === TOOLBAR === */
 .toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #0d1117;
-  padding: 15px 40px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 25px;
+  height: 55px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .brand-name {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #00c6ff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .toolbar-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
 }
 
-/* Notification Button */
+.toolbar-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .notification-btn {
-  position: relative;
   background: transparent;
   border: none;
-  font-size: 1.6rem;
-  cursor: pointer;
   color: white;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.notification-btn:hover {
-  color: #00c6ff;
-  transform: scale(1.1);
+  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
 }
 
 .notification-badge {
   position: absolute;
-  top: -6px;
+  top: -5px;
   right: -8px;
-  background: #ff3b3b;
+  background: red;
   color: white;
   font-size: 0.7rem;
   border-radius: 50%;
-  padding: 2px 6px;
-  font-weight: bold;
+  padding: 2px 5px;
 }
 
-/* Body Section */
-.full-body {
-  flex: 1;
+/* === DASHBOARD BODY (CENTERED CONTENT) === */
+.dashboard-body {
+  position: relative;
+  z-index: 1;
+  padding: 100px 40px 40px;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow-y: auto;
+}
+
+/* === SECTION WRAPPER === */
+.dashboard-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* responsive for smaller screens */
+  gap: 30px;
+  background: rgba(0, 0, 0, 0.6);
   padding: 40px;
-}
-
-.dashboard-header {
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  max-width: 900px;
+  width: 90%;
   text-align: center;
-  margin-bottom: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
-.dashboard-header h2 {
+.dashboard-section h2 {
   font-size: 2rem;
   color: #00c6ff;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-/* Card Grid Layout */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+.dashboard-section p {
+  width: 100%;
+  color: #ccc;
+  margin-bottom: 25px;
 }
 
-/* Cards */
-.dashboard-card {
-  background: #1c1f26;
+/* === TWO-COMPONENT LAYOUT (SIDE-BY-SIDE) === */
+.upload-section,
+.skills-display {
+  flex: 1 1 45%; /* two sections side by side */
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 25px;
-  text-align: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
-.dashboard-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-}
-
-.dashboard-card h3 {
-  color: #00c6ff;
-}
-
-.dashboard-card button {
-  margin-top: 12px;
-  padding: 10px 16px;
-  background: #00c6ff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  color: black;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
-
-.dashboard-card button:hover {
-  background: #0091ff;
-}
-/* Upload Section */
-.upload-section {
-  margin: 40px auto;
-  text-align: center;
-}
-
+/* === UPLOAD SECTION === */
 .upload-box {
-  background: #1c1f26;
+  background: #0e1116;
   border-radius: 12px;
-  padding: 25px 35px;
-  display: inline-block;
+  padding: 20px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
@@ -143,7 +176,7 @@
   color: black;
   cursor: pointer;
   font-weight: 600;
-  margin-right: 10px;
+  margin-bottom: 10px;
   transition: background 0.3s ease;
 }
 
@@ -168,208 +201,17 @@
   color: white;
 }
 
-/* File List */
 .file-list {
   margin-top: 12px;
   color: #ccc;
   font-size: 0.9rem;
 }
 
-/* Skills Display */
-.skills-display {
-  text-align: center;
-  margin-top: 40px;
-}
-
+/* === SKILLS DISPLAY === */
 .skills-display h3 {
   color: #00c6ff;
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-}
-
-.skills-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
-
-.skill-chip {
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: white;
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-  animation: popIn 0.4s ease;
-}
-
-@keyframes popIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-/* Dark theme container */
-.full-page {
-  height: 100vh;
-  background: #0b0c10;
-  color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Toolbar */
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #1c1f26;
-  padding: 15px 30px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-.brand-name {
-  font-size: 1.8rem;
-  color: #00c6ff;
-  font-weight: bold;
-}
-
-.toolbar-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Dropdown */
-.dropdown {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dropdown-label {
-  font-weight: 600;
-}
-
-.dropdown-select {
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: none;
-  background: #00c6ff;
-  color: black;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* Notification Button */
-.notification-btn {
-  background: none;
-  border: none;
   font-size: 1.5rem;
-  position: relative;
-  cursor: pointer;
-}
-
-.notification-badge {
-  position: absolute;
-  top: -4px;
-  right: -6px;
-  background: red;
-  color: white;
-  font-size: 0.7rem;
-  padding: 2px 6px;
-  border-radius: 50%;
-}
-
-/* Body */
-.dashboard-body {
-  flex: 1;
-  padding: 40px;
-  overflow-y: auto;
-}
-
-/* Section */
-.dashboard-section {
-  text-align: center;
-  background: #1c1f26;
-  border-radius: 12px;
-  padding: 30px;
-  margin: 20px auto;
-  max-width: 800px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.dashboard-section h2 {
-  color: #00c6ff;
-  font-size: 1.7rem;
-  margin-bottom: 10px;
-}
-
-.dashboard-section p {
-  color: #ccc;
   margin-bottom: 20px;
-}
-
-.dashboard-section button {
-  background: #00c6ff;
-  color: black;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.dashboard-section button:hover {
-  background: #0091ff;
-  color: white;
-}
-
-/* Upload + Skills Styles (from earlier) */
-.upload-section {
-  margin: 30px auto;
-  text-align: center;
-}
-
-.upload-box {
-  background: #0e1116;
-  border-radius: 12px;
-  padding: 25px 35px;
-  display: inline-block;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.custom-file-upload {
-  background: #00c6ff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  color: black;
-  cursor: pointer;
-  font-weight: 600;
-  margin-right: 10px;
-}
-
-.custom-file-upload:hover {
-  background: #0091ff;
-  color: white;
-}
-
-.file-list {
-  margin-top: 12px;
-  color: #ccc;
-  font-size: 0.9rem;
-}
-
-/* Skills Display */
-.skills-display {
-  text-align: center;
-  margin-top: 30px;
 }
 
 .skills-grid {
@@ -386,6 +228,7 @@
   border-radius: 20px;
   font-weight: 600;
   animation: popIn 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes popIn {
@@ -398,609 +241,8 @@
     opacity: 1;
   }
 }
-/* Toolbar */
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #121212;
-  color: #fff;
-  padding: 15px 25px;
-  border-bottom: 1px solid #333;
-}
 
-.brand-name {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.toolbar-links button {
-  background: none;
-  border: none;
-  color: #bbb;
-  margin: 0 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: color 0.3s, transform 0.2s;
-}
-
-.toolbar-links button:hover,
-.toolbar-links button.active {
-  color: #4fc3f7;
-  transform: scale(1.1);
-}
-
-.toolbar-right {
-  display: flex;
-  align-items: center;
-}
-
-.notification-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.4rem;
-  position: relative;
-  cursor: pointer;
-}
-
-.notification-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: #ff3b3b;
-  color: white;
-  border-radius: 50%;
-  padding: 2px 6px;
-  font-size: 0.7rem;
-}
-
-/* Full-page and dark mode */
-.dark-mode.full-page {
-  background-color: #1e1e1e;
-  min-height: 100vh;
-  color: #e0e0e0;
-}
-
-/* Section styling */
-.dashboard-section {
-  margin: 40px auto;
-  max-width: 800px;
-  background: #252525;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
-
-/* Upload section */
-.upload-box {
-  margin-top: 15px;
-  display: flex;
-  gap: 10px;
-}
-
-.custom-file-upload {
-  background-color: #4fc3f7;
-  color: black;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button {
-  background-color: #4fc3f7;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #03a9f4;
-}
-
-/* Skill display */
-.skills-display {
-  margin-top: 25px;
-}
-
-.skills-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skill-chip {
-  background: #333;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 16px;
-  font-size: 0.9rem;
-}
-.dark-mode.full-page {
-  min-height: 100vh;
-  color: #e0e0e0;
-  background-image: url("../assets/dashboard-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  position: relative;
-}
-
-/* Optional dark overlay for readability */
-.dark-mode.full-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 0;
-}
-
-/* Ensure content sits above the overlay */
-.dashboard-container > * {
-  position: relative;
-  z-index: 1;
-}
-.full-page {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.75);
-  color: white;
-  padding: 15px 25px;
-  border-bottom: 1px solid #444;
-  backdrop-filter: blur(8px);
-}
-
-.toolbar-btn {
-  background: none;
-  border: none;
-  color: white;
-  margin-right: 15px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.toolbar-btn:hover {
-  color: #00bcd4;
-}
-
-.notification-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  position: relative;
-  cursor: pointer;
-}
-
-.notification-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: red;
-  color: white;
-  font-size: 12px;
-  border-radius: 50%;
-  padding: 2px 6px;
-}
-/* Make full page layout */
-.full-page {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Dark overlay on top of background */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 0;
-}
-
-/* Toolbar (fixed at top) */
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 25px;
-  background-color: rgba(0, 0, 0, 0.75);
-  color: white;
-  border-bottom: 1px solid #444;
-  backdrop-filter: blur(8px);
-  z-index: 2;
-}
-
-.fixed-toolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-/* Buttons */
-.toolbar-btn {
-  background: none;
-  border: none;
-  color: white;
-  margin-right: 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.toolbar-btn:hover {
-  color: #00bcd4;
-}
-
-/* Notification button */
-.notification-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  position: relative;
-  cursor: pointer;
-}
-
-.notification-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: red;
-  color: white;
-  font-size: 12px;
-  border-radius: 50%;
-  padding: 2px 6px;
-}
-
-/* Dashboard body */
-.dashboard-body {
-  position: relative;
-  z-index: 1;
-  padding: 100px 40px 40px;
-  height: calc(100vh - 80px);
-  overflow-y: auto;
-}
-
-/* Section content */
-.dashboard-section {
-  text-align: center;
-  margin-top: 30px;
-  color: white;
-}
-
-.dashboard-section h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.dashboard-section p {
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto;
-}
-/* Make full page layout */
-.dashboard-wrapper {
-    margin-top: 10px;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* Full-page background image */
-.background-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  z-index: -2;
-}
-
-/* Overlay for dark readability */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.65);
-  z-index: -1;
-}
-
-/* Main container */
-.dashboard-container {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Toolbar */
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-}
-
-.toolbar-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.toolbar-btn {
-  background: transparent;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  font-size: 15px;
-  padding: 8px 15px;
-  transition: 0.3s;
-}
-
-.toolbar-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-}
-
-/* Notification */
-.notification-btn {
-  position: relative;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.notification-badge {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: red;
-  color: white;
-  border-radius: 50%;
-  padding: 3px 7px;
-  font-size: 10px;
-}
-
-/* Content */
-.dashboard-body {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.dashboard-section {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 40px;
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
-  max-width: 600px;
-  width: 80%;
-}
-/* Toolbar Styling */
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 8px 25px; /* 🔹 reduced padding for smaller height */
-  height: 55px; /* 🔹 reduced height */
-  color: white;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-}
-
-/* Brand name */
-.brand-name {
-  font-size: 1.4rem; /* smaller font */
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-/* Toolbar buttons */
-.toolbar-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.toolbar-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 5px 12px; /* smaller padding */
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem; /* slightly smaller font */
-}
-
-.toolbar-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Notification button */
-.notification-btn {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  position: relative;
-  cursor: pointer;
-}
-
-.notification-badge {
-  position: absolute;
-  top: -5px;
-  right: -8px;
-  background: red;
-  color: white;
-  font-size: 0.7rem;
-  border-radius: 50%;
-  padding: 2px 5px;
-}
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 8px 25px;
-  height: 55px;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-}
-
-/* Left section of toolbar */
-.toolbar-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* Notification button styling */
-.notification-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  position: relative;
-  cursor: pointer;
-}
-
-.notification-badge {
-  position: absolute;
-  top: -5px;
-  right: -7px;
-  background: red;
-  color: white;
-  font-size: 10px;
-  padding: 2px 5px;
-  border-radius: 50%;
-}
-
-/* Right section */
-.toolbar-right {
-  display: flex;
-  gap: 15px;
-}
-
-.toolbar-btn {
-  background: transparent;
-  border: 1px solid #fff;
-  color: white;
-  border-radius: 20px;
-  padding: 6px 14px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.toolbar-btn:hover {
-  background: #fff;
-  color: #000;
-}
-/* Toolbar layout */
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 8px 25px;
-  height: 55px;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-}
-
-/* Move left section slightly left */
-.toolbar-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  transform: translateX(-30px); /* 👈 moves entire group slightly left */
-}
-
-.brand-name {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.toolbar-buttons {
-  display: flex;
-  gap: 12px;
-}
-
-/* Buttons */
-.toolbar-btn {
-  background: transparent;
-  border: 1px solid #fff;
-  color: white;
-  border-radius: 20px;
-  padding: 6px 14px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.toolbar-btn:hover {
-  background: #fff;
-  color: #000;
-}
-
-/* Notification button stays on the right */
-.notification-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  position: relative;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.notification-badge {
-  position: absolute;
-  top: -5px;
-  right: -7px;
-  background: red;
-  color: white;
-  font-size: 10px;
-  padding: 2px 5px;
-  border-radius: 50%;
-}
+/* === CHATBOT ICON === */
 .chatbolt-icon {
   position: fixed;
   bottom: 30px;
@@ -1022,596 +264,258 @@ button:hover {
   transform: scale(1.1);
   box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
 }
-.upload-section {
-  margin-top: 1rem;
-  text-align: center;
+.light-mode {
+  background-color: #f8faff;
+  color: #222;
 }
 
-.file-input {
-  display: block;
-  margin: 1rem auto;
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background-color: #f8f9fa;
-}
-
-.upload-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 0.7rem 1.2rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s ease;
-}
-
-.upload-btn:hover {
-  background-color: #0056b3;
-}
-
-.results-section {
-  margin-top: 2rem;
-  background: #ffffffc9;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-}
-
-.skills-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  justify-content: center;
-  padding: 0;
-}
-
-.skill-item {
-  background-color: #e0f7fa;
-  color: #00796b;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-}
-.upload-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-top: 50px;
-}
-
-.upload-boxes {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  flex-wrap: wrap;
-  margin-top: 30px;
-}
-
-.upload-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  padding: 25px 40px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s;
-}
-
-.upload-card:hover {
-  transform: scale(1.03);
-}
-
-.file-input {
-  margin-top: 10px;
+.roadmap-section input {
   padding: 10px;
-  border: 2px dashed #007bff;
+  border: 2px solid #cce0ff;
   border-radius: 10px;
-  background: #f0f8ff;
-  color: #333;
-  cursor: pointer;
+  width: 60%;
+  margin-right: 10px;
 }
 
-.upload-btn {
-  margin-top: 40px;
-  padding: 12px 30px;
-  font-size: 16px;
-  font-weight: bold;
-  background: linear-gradient(135deg, #007bff, #00bfff);
-  color: rgb(203, 120, 120);
+.roadmap-section button {
+  background-color: #4a90e2;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
   border: none;
-  border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.upload-btn:hover {
-  background: linear-gradient(135deg, #005fcc, #00a2e8);
-}
-.upload-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-top: 50px;
+.roadmap-section button:hover {
+  background-color: #357abd;
 }
 
-.upload-boxes {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
+.roadmap-results {
+  margin-top: 20px;
+  background: #eaf2ff;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.roadmap-results ul li {
+  margin: 8px 0;
+}
+/* Upload Section Layout */
+.upload-section {
+  text-align: center;
   margin-top: 30px;
+  background-color: #f9fafc;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* ✨ Each upload card (Marks Card / Resume) */
-.upload-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 35px 50px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+/* Header */
+.section-header {
+  color: #2a3d66;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
-.upload-card:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 12px 30px rgba(138, 43, 226, 0.3);
-}
-
-/* ✨ File input */
-.file-input {
-  margin-top: 15px;
-  padding: 12px;
-  border: 2px dashed #9b59b6;
-  border-radius: 12px;
-  background: rgba(240, 240, 255, 0.4);
-  color: #2c2c54;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.file-input:hover {
-  background: rgba(200, 160, 255, 0.3);
-  border-color: #8e44ad;
-}
-
-/* 🌈 Upload button */
-.upload-btn {
-  margin-top: 40px;
-  padding: 14px 35px;
-  font-size: 17px;
-  font-weight: bold;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #8e2de2, #4a00e0);
-  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-  transition: all 0.3s ease;
-}
-
-.upload-btn:hover {
-  background: linear-gradient(135deg, #9b59b6, #673ab7);
-  box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
-}
-
-/* 🧠 Results section */
-.results-section {
-  margin-top: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 25px;
-  width: 60%;
-  text-align: left;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.skills-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 15px;
+/* Two-column layout for upload boxes */
+.upload-columns {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skill-item {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 14px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-}
-.upload-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  margin-top: 60px;
-  overflow: hidden; /* removes any unnecessary scroll */
-}
-
-.upload-section p {
-  font-size: 1.2rem;
-  color: #f1f1f1;
-  margin-bottom: 30px;
-}
-
-/* 🟣 Two-column layout for boxes */
-.upload-boxes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  width: 70%;
-  justify-items: center;
-}
-
-/* ✨ Each upload card (Marks Card / Resume) */
-.upload-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 35px 50px;
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-}
-
-.upload-card:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 12px 30px rgba(138, 43, 226, 0.3);
-}
-
-/* 📂 File input */
-.file-input {
-  margin-top: 15px;
-  padding: 12px;
-  border: 2px dashed #9b59b6;
-  border-radius: 12px;
-  background: rgba(240, 240, 255, 0.4);
-  color: #2c2c54;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.file-input:hover {
-  background: rgba(200, 160, 255, 0.3);
-  border-color: #8e44ad;
-}
-
-/* 🚀 Upload button centered below */
-.upload-btn {
-  margin-top: 50px;
-  padding: 14px 35px;
-  font-size: 17px;
-  font-weight: bold;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #8e2de2, #4a00e0);
-  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-  transition: all 0.3s ease;
-}
-
-.upload-btn:hover {
-  background: linear-gradient(135deg, #9b59b6, #673ab7);
-  box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
-}
-
-/* 🧠 Results section */
-.results-section {
-  margin-top: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 25px;
-  width: 60%;
-  text-align: left;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.skills-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skill-item {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 14px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-}
-
-/* 📱 Responsive adjustment for small screens */
-@media (max-width: 768px) {
-  .upload-boxes {
-    grid-template-columns: 1fr;
-  }
-
-  .upload-card {
-    max-width: 90%;
-  }
-}
-/* 🌌 Upload Section - Centered & Scroll-Free */
-.upload-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-top: 40px;
-  min-height: 60vh;
-  overflow: hidden; /* remove any scrollbars */
-}
-
-.upload-section p {
-  font-size: 1.1rem;
-  color: #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* 🟪 Two-column layout for upload boxes */
-.upload-boxes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  width: 60%;
-  justify-items: center;
-}
-
-/* ✨ Smaller, elegant upload card */
-.upload-card {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 25px 35px;
-  width: 85%;
-  max-width: 280px;
-  text-align: center;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: all 0.3s ease;
-}
-
-.upload-card:hover {
-  transform: scale(1.04);
-  background: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
-}
-
-/* 📂 File input */
-.file-input {
-  margin-top: 10px;
-  padding: 10px;
-  border: 2px dashed #9b59b6;
-  border-radius: 10px;
-  background: rgba(240, 240, 255, 0.3);
-  color: #2c2c54;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.file-input:hover {
-  background: rgba(200, 160, 255, 0.3);
-  border-color: #8e44ad;
-}
-
-/* 🚀 Upload Button */
-.upload-btn {
-  margin-top: 35px;
-  padding: 12px 30px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #8e2de2, #4a00e0);
-  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-  transition: all 0.3s ease;
-}
-
-.upload-btn:hover {
-  background: linear-gradient(135deg, #9b59b6, #673ab7);
-  box-shadow: 0 8px 20px rgba(155, 89, 182, 0.45);
-}
-
-/* 🧠 Results Section */
-.results-section {
-  margin-top: 30px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 20px;
-  width: 55%;
-  text-align: left;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-.skills-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 12px;
-  display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  margin: 20px 0;
+}
+
+/* Individual Upload Box */
+.upload-box {
+  width: 300px;
+  background: white;
+  border: 2px solid #d1e3ff;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.upload-box:hover {
+  border-color: #7da8ff;
+  box-shadow: 0 0 10px rgba(125,168,255,0.3);
+}
+
+.file-input {
+  margin-top: 15px;
+  width: 100%;
+  border: none;
+  background-color: #eef4ff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Light Button */
+.light-btn {
+  background-color: #5c8aff;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.light-btn:hover {
+  background-color: #3c6df3;
+}
+
+/* Results Section */
+.light-results {
+  background-color: #ffffff;
+  border: 1px solid #dce7ff;
+  border-radius: 12px;
+  margin-top: 25px;
+  padding: 20px;
+  text-align: left;
 }
 
 .skill-item {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 18px;
-  font-weight: 500;
-  font-size: 13px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  background: #eaf1ff;
+  color: #2a3d66;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 6px 0;
+  display: inline-block;
 }
-
-/* 📱 Responsive for smaller screens */
-@media (max-width: 768px) {
-  .upload-boxes {
-    grid-template-columns: 1fr;
-    width: 90%;
-  }
-
-  .upload-card {
-    max-width: 80%;
-  }
-}
-/* 🌌 Upload Section - Centered & Scroll-Free */
+/* Upload Section Layout */
 .upload-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  min-height: 70vh;
-  overflow: hidden; /* no scroll */
   margin-top: 30px;
-}
-
-.upload-section p {
-  font-size: 1.1rem;
-  color: #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* 🟪 Stack boxes vertically */
-.upload-boxes {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  width: 100%;
-}
-
-/* ✨ Smaller, neat upload card */
-.upload-card {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
+  background-color: #0d0d0d;
+  padding: 30px;
   border-radius: 16px;
-  padding: 25px 35px;
-  width: 85%;
-  max-width: 320px;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.05);
+  color: #f1f1f1;
+}
+
+/* Section Header */
+.section-header {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+/* Two-column layout */
+.upload-columns {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+/* Upload Box */
+.upload-box {
+  width: 300px;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 25px;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
   transition: all 0.3s ease;
 }
 
-.upload-card:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+.upload-box:hover {
+  border-color: #00aaff;
+  box-shadow: 0 0 12px rgba(0,170,255,0.4);
 }
 
-/* 📂 File input */
 .file-input {
-  margin-top: 10px;
-  padding: 10px;
-  border: 2px dashed #9b59b6;
-  border-radius: 10px;
-  background: rgba(240, 240, 255, 0.3);
-  color: #2c2c54;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  margin-top: 15px;
   width: 100%;
+  border: none;
+  background-color: #2b2b2b;
+  color: #e0e0e0;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.file-input:hover {
-  background: rgba(200, 160, 255, 0.3);
-  border-color: #8e44ad;
-}
-
-/* 🚀 Upload Button */
-.upload-btn {
-  margin-top: 35px;
-  padding: 12px 30px;
-  font-size: 16px;
-  font-weight: bold;
+.file-input::-webkit-file-upload-button {
+  background-color: #00aaff;
   color: white;
   border: none;
-  border-radius: 25px;
+  padding: 8px 14px;
+  border-radius: 6px;
   cursor: pointer;
-  background: linear-gradient(135deg, #8e2de2, #4a00e0);
-  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
 }
 
-.upload-btn:hover {
-  background: linear-gradient(135deg, #9b59b6, #673ab7);
-  box-shadow: 0 8px 20px rgba(155, 89, 182, 0.45);
+.file-input::-webkit-file-upload-button:hover {
+  background-color: #008ecc;
 }
 
-/* 🧠 Results Section */
-.results-section {
-  margin-top: 30px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
+/* Upload Button */
+.light-btn {
+  background-color: #00aaff;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.light-btn:hover {
+  background-color: #008ecc;
+}
+
+/* Results Section */
+.light-results {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  margin-top: 25px;
   padding: 20px;
-  width: 55%;
   text-align: left;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-.skills-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  color: #f1f1f1;
 }
 
 .skill-item {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 18px;
+  background: #262626;
+  color: #00aaff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 6px 6px;
+  display: inline-block;
   font-weight: 500;
-  font-size: 13px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* reduce this value to move icons closer */
 }
 
-/* 📱 Responsive for smaller screens */
-@media (max-width: 768px) {
-  .upload-card {
-    max-width: 90%;
-  }
-
-  .results-section {
-    width: 85%;
-  }
+.notification-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 5px; /* change this */
+  margin-right: -10px; /* add this to shift it slightly left */
 }
 
-
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}

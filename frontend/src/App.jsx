@@ -7,15 +7,15 @@ import StudentDashboard from "./StudentDashboard";
 import PlacementOfficerDashboard from "./PlacementOfficerDashboard";
 import ChatBoltPage from "./ChatBoltPage";
 import LibraryPage from "./LibraryPage";
-<<<<<<< HEAD
 import ProfilePage from "./ProfilePage";
-=======
 
 import CodeEditor from "./component/CodeEditor"
 import { Box } from "@chakra-ui/react";
-
->>>>>>> 0a887bb804c32c7d2f62a4c96ccf1b421e024041
-
+import UpskillingPage from "./UpskillingPage"; // adjust path if needed
+import GoProPage from "./GoProPage";
+import AlumniPage from "./AlumniPage";
+import LearnPage from "./LearnPage";
+import CompanyInfoPage from "./CompanyInfoPage";
 
 function App() {
   return (
@@ -29,12 +29,13 @@ function App() {
          <Route path="/dashboard" element={<StudentDashboard />} />
   <Route path="/chatbolt" element={<ChatBoltPage />} />
 <Route path="/library" element={<LibraryPage />} />
-<<<<<<< HEAD
 <Route path="/profile" element={<ProfilePage />} />
-=======
 <Route path="/code-editor" element={<CodeEditor/>}/>
-
->>>>>>> 0a887bb804c32c7d2f62a4c96ccf1b421e024041
+<Route path="/upskilling" element={<UpskillingPage />} />
+<Route path="/gopro" element={<GoProPage />} />
+<Route path="/alumni" element={<AlumniPage />} />
+ <Route path="/learn" element={<LearnPage />} />
+ <Route path="/companyinfo" element={<CompanyInfoPage />} />
       </Routes>
     </Router>
   );

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./PlacementDashboard.css";
 import backgroundImage from "./assets/dashboard-bg.png"; // background image path
 
 const PlacementOfficerDashboard = () => {
   const [department, setDepartment] = useState("All Departments");
+  const navigate = useNavigate();
 
   const handleDepartmentChange = (e) => {
     setDepartment(e.target.value);
@@ -11,20 +13,18 @@ const PlacementOfficerDashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      {/* Full Background Image */}
+      {/* Background */}
       <div
         className="background-image"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       ></div>
-
-      {/* Overlay */}
       <div className="overlay"></div>
 
       {/* Toolbar */}
       <header className="toolbar fixed-toolbar slide-up">
         <h1 className="brand-name">SkillLens</h1>
         <div className="toolbar-right">
-          {/* Department Dropdown */}
+          {/* Department Filter */}
           <select
             id="department"
             value={department}
@@ -39,7 +39,15 @@ const PlacementOfficerDashboard = () => {
             <option>Information Science</option>
           </select>
 
-          {/* Notification Bell */}
+          {/* Company Button */}
+          <button
+            className="toolbar-btn"
+            onClick={() => navigate("/companyinfo")}
+          >
+            🏢 Company
+          </button>
+
+          {/* Notification Button */}
           <button className="notification-btn" title="Notifications">
             🔔
             <span className="notification-badge">3</span>
@@ -47,14 +55,14 @@ const PlacementOfficerDashboard = () => {
         </div>
       </header>
 
-      {/* Middle Glass Box */}
+      {/* Body */}
       <main className="dashboard-body">
         <section className="dashboard-section">
           <h2>👨‍💼 Placement Officer Dashboard</h2>
           <p>
             Welcome to the Placement Officer Dashboard!  
             Manage department-wise placement data, analyze student performance,  
-            and stay updated with the latest company drives.
+            and stay updated with upcoming company drives.
           </p>
         </section>
       </main>

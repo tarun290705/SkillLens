@@ -11,7 +11,6 @@ const StudentDashboard = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Handle File Selection
   const handleResumeChange = (e) => {
     setResumeFiles(Array.from(e.target.files));
   };
@@ -20,7 +19,6 @@ const StudentDashboard = () => {
     setMarksCardFiles(Array.from(e.target.files));
   };
 
-  // Handle File Upload and API Call
   const handleUpload = async () => {
     if (resumeFiles.length === 0 && marksCardFiles.length === 0) {
       alert("⚠️ Please upload at least one file (Resume or Marks Card).");
@@ -52,18 +50,14 @@ const StudentDashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      {/* Background Image */}
       <div
         className="background-image"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       ></div>
 
-      {/* Overlay */}
       <div className="overlay"></div>
 
-      {/* Main Content */}
       <div className="dashboard-container">
-        {/* Toolbar */}
         <header className="toolbar fixed-toolbar">
           <h1 className="brand-name">SkillLens</h1>
 
@@ -71,27 +65,42 @@ const StudentDashboard = () => {
             <button className="toolbar-btn" onClick={() => navigate("/profile")}>
               Profile
             </button>
+
             <button
               className="toolbar-btn"
               onClick={() => setSelectedSection("Placement Predictions")}
             >
               Placement Predictions
             </button>
+
+            <button className="toolbar-btn" onClick={() => navigate("/gopro")}>
+              ⭐ Go Pro
+            </button>
+
             <button
               className="toolbar-btn"
-              onClick={() => setSelectedSection("Upskilling")}
+              onClick={() => navigate("/upskilling")}
             >
-              Upskilling
+              🚀 Upskilling
             </button>
-            <button
-              className="toolbar-btn"
-              onClick={() => setSelectedSection("Skill Extractor")}
-            >
-              Skill Extractor
+
+            <button className="toolbar-btn" onClick={() => navigate("/learn")}>
+              🎓 Learn
             </button>
+
+            <button className="toolbar-btn" onClick={() => navigate("/alumni")}>
+              🧑‍💼 Alumni
+            </button>
+
             <button className="toolbar-btn" onClick={() => navigate("/library")}>
               📚 Library
             </button>
+
+            {/* 💻 Code Editor Button */}
+            <button className="toolbar-btn" onClick={() => navigate("/CodeEditor")}>
+              💻 Code Editor
+            </button>
+
             <button className="notification-btn" title="Notifications">
               🔔
               <span className="notification-badge">2</span>
@@ -99,7 +108,6 @@ const StudentDashboard = () => {
           </div>
         </header>
 
-        {/* Dashboard Body */}
         <main className="dashboard-body">
           <section className="dashboard-section">
             <h2>🎓 {selectedSection}</h2>
@@ -109,7 +117,6 @@ const StudentDashboard = () => {
                 <p>Select and upload your files for analysis:</p>
 
                 <div className="upload-boxes">
-                  {/* Resume Upload */}
                   <div className="upload-card">
                     <h3>📄 Upload Resume(s)</h3>
                     <input
@@ -120,7 +127,6 @@ const StudentDashboard = () => {
                     />
                   </div>
 
-                  {/* Marks Card Upload */}
                   <div className="upload-card">
                     <h3>🎯 Upload Marks Card(s)</h3>
                     <input
@@ -140,7 +146,6 @@ const StudentDashboard = () => {
                   {loading ? "⏳ Extracting..." : "🚀 Extract Skills"}
                 </button>
 
-                {/* Results Section */}
                 {skills.length > 0 && (
                   <div className="results-section">
                     <h3>🧠 Extracted Skills</h3>
@@ -163,7 +168,6 @@ const StudentDashboard = () => {
           </section>
         </main>
 
-        {/* 💬 ChatBolt Icon */}
         <button
           className="chatbolt-icon"
           title="Open ChatBolt"

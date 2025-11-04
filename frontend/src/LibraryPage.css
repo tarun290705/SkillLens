@@ -171,3 +171,104 @@
   color: #bb87cf;
   text-decoration: underline;
 }
+.library-container {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f9eaff, #ffe6f0);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  color: #2d2d2d;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Header */
+.library-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.library-header h1 {
+  font-size: 2.2rem;
+  color: #8b5fbf;
+  text-shadow: 0 0 10px rgba(180, 120, 230, 0.2);
+}
+
+.back-btn {
+  position: absolute;
+  left: 40px;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  color: #8b5fbf;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #f2d9ff;
+  transform: scale(1.1);
+}
+
+/* Company List */
+.company-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Company Cards */
+.company-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 25px;
+  width: 320px;
+  box-shadow: 0 4px 20px rgba(150, 100, 200, 0.15);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.company-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(180, 130, 230, 0.3);
+}
+
+.company-card h2 {
+  color: #9d6dd1;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.company-card p {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+.company-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #8b5fbf;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.company-card a:hover {
+  color: #b47fd8;
+  text-decoration: underline;
+}

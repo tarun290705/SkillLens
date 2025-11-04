@@ -1,0 +1,236 @@
+.gopro-wrapper {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  font-family: "Poppins", sans-serif;
+}
+
+.gopro-container {
+  background: white;
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.company-input {
+  padding: 10px 20px;
+  width: 70%;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.generate-btn {
+  padding: 10px 20px;
+  background: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.generate-btn:hover {
+  background: #005ec2;
+}
+
+.roadmap-box {
+  margin-top: 30px;
+  background: #f5f7fa;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #333;
+}
+/* General Layout */
+.gopro-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  padding: 40px;
+}
+
+/* Card Container */
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 50px;
+  text-align: center;
+  width: 80%;
+  max-width: 800px;
+  color: #222;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+/* Input Section */
+.input-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.company-input {
+  padding: 12px 18px;
+  width: 60%;
+  border-radius: 12px;
+  border: 2px solid #0078ff;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.company-input:focus {
+  outline: none;
+  border-color: #0052cc;
+  box-shadow: 0 0 10px rgba(0, 120, 255, 0.3);
+}
+
+.generate-btn {
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #0078ff, #00c6ff);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.generate-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 120, 255, 0.5);
+}
+
+/* Roadmap Section */
+.roadmap-section {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.8s ease-in-out;
+}
+
+.roadmap-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.roadmap-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: relative;
+  padding-left: 30px;
+  border-left: 3px dashed #0078ff;
+}
+
+/* Timeline Step */
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  position: relative;
+}
+
+.step-icon {
+  font-size: 2rem;
+  background: #0078ff;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 120, 255, 0.4);
+}
+
+.step-content {
+  background: #f7faff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.step-content:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 120, 255, 0.1);
+}
+
+.step-content h3 {
+  margin: 0;
+  color: #0052cc;
+  font-size: 1.1rem;
+}
+
+.step-content p {
+  margin: 5px 0 0;
+  color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
