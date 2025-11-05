@@ -33,7 +33,7 @@ const StudentDashboard = () => {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:8000/analyze-employability/", {
+      const response = await fetch("http://localhost:8001/analyze-employability/", {
         method: "POST",
         body: formData,
       });
