@@ -11,7 +11,7 @@ import ProfilePage from "./ProfilePage";
 
 import CodeEditor from "./component/CodeEditor"
 import { Box } from "@chakra-ui/react";
-import UpskillingPage from "./UpskillingPage"; // adjust path if needed
+import UpskillingPage from "./UpskillingPage"; // adjust path if any needed
 import GoProPage from "./GoProPage";
 import AlumniPage from "./AlumniPage";
 import LearnPage from "./LearnPage";

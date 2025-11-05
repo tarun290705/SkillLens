@@ -60,6 +60,16 @@ const UpskillingPage = () => {
         { title: "Google Cloud Generative AI Learning Path", url: "https://cloud.google.com/learn/paths/generative-ai" },
       ],
     },
+    {
+      name: "Cloud Computing & DevOps",
+desc: "Mastering AWS, Azure, and CI/CD tools is essential for building scalable, automated infrastructure solutions.",
+links: [
+  { title: "AWS Cloud Practitioner Essentials", url: "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/" },
+  { title: "Microsoft Learn: Azure Fundamentals", url: "https://learn.microsoft.com/en-us/training/paths/azure-fundamentals/" },
+  { title: "DevOps Roadmap 2025", url: "https://roadmap.sh/devops" },
+],
+
+    },
   ];
 
   return (

@@ -44,6 +44,15 @@ const AlumniPage = () => {
       image:
         "https://cdn-icons-png.flaticon.com/512/2922/2922656.png",
     },
+    {
+      name: "Anita Sharma",
+company: "Infosys",
+position: "Data Scientist",
+email: "anita.sharma@alumni.edu",
+linkedin: "https://linkedin.com/in/anita-sharma",
+image: "https://cdn-icons-png.flaticon.com/512/2922/2922561.png",
+
+    },
   ];
 
   const handleSearch = () => {
